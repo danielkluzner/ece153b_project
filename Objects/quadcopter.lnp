@@ -1,10 +1,10 @@
 --cpu=Cortex-M4.fp.sp --branchpatch=sdcomp-29491-629360
 ".\objects\buttoninterrupts.o"
 ".\objects\initializations.o"
-".\objects\throttle.o"
 ".\objects\main.o"
 ".\objects\startup_stm32l476xx.o"
---strict --scatter ".\Objects\lab1.sct"
+".\objects\throttle.o"
+--strict --scatter ".\Objects\quadcopter.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
---list ".\Listings\lab1.map" -o .\Objects\lab1.axf
+--list ".\Listings\quadcopter.map" -o .\Objects\quadcopter.axf

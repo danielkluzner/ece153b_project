@@ -3,7 +3,7 @@
  * Auto generated Run-Time-Environment Configuration File
  *      *** Do not modify ! ***
  *
- * Project: 'lab1' 
+ * Project: 'quadcopter' 
  * Target:  'Target 1' 
  */
 

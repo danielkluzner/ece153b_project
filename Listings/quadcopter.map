@@ -136,12 +136,12 @@ Removing Unused input sections from the image.
     Removing initializations.o(i.interrupt_init), (124 bytes).
     Removing initializations.o(i.joystick_init), (68 bytes).
     Removing initializations.o(i.pwm_init), (468 bytes).
-    Removing throttle.o(.rev16_text), (4 bytes).
-    Removing throttle.o(.revsh_text), (4 bytes).
-    Removing throttle.o(.rrx_text), (6 bytes).
     Removing main.o(.rev16_text), (4 bytes).
     Removing main.o(.revsh_text), (4 bytes).
     Removing main.o(.rrx_text), (6 bytes).
+    Removing throttle.o(.rev16_text), (4 bytes).
+    Removing throttle.o(.revsh_text), (4 bytes).
+    Removing throttle.o(.rrx_text), (6 bytes).
 
 18 unused section(s) (total 818 bytes) removed from the image.
 
@@ -153,48 +153,48 @@ Image Symbol Table
 
     Symbol Name                              Value     Ov Type        Size  Object(Section)
 
-    ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit3.o ABSOLUTE
-    ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit2.o ABSOLUTE
     ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit1.o ABSOLUTE
     ../clib/angel/boardlib.s                 0x00000000   Number         0  boardshut.o ABSOLUTE
+    ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit3.o ABSOLUTE
+    ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit2.o ABSOLUTE
     ../clib/angel/handlers.s                 0x00000000   Number         0  __scatter_zi.o ABSOLUTE
     ../clib/angel/kernel.s                   0x00000000   Number         0  rtexit2.o ABSOLUTE
-    ../clib/angel/kernel.s                   0x00000000   Number         0  rtexit.o ABSOLUTE
-    ../clib/angel/kernel.s                   0x00000000   Number         0  __rtentry.o ABSOLUTE
     ../clib/angel/kernel.s                   0x00000000   Number         0  __rtentry4.o ABSOLUTE
+    ../clib/angel/kernel.s                   0x00000000   Number         0  __rtentry.o ABSOLUTE
     ../clib/angel/kernel.s                   0x00000000   Number         0  __rtentry2.o ABSOLUTE
+    ../clib/angel/kernel.s                   0x00000000   Number         0  rtexit.o ABSOLUTE
     ../clib/angel/rt.s                       0x00000000   Number         0  rt_raise.o ABSOLUTE
     ../clib/angel/scatter.s                  0x00000000   Number         0  __scatter.o ABSOLUTE
     ../clib/angel/startup.s                  0x00000000   Number         0  __main.o ABSOLUTE
-    ../clib/angel/sys.s                      0x00000000   Number         0  use_no_semi.o ABSOLUTE
-    ../clib/angel/sys.s                      0x00000000   Number         0  libspace.o ABSOLUTE
-    ../clib/angel/sys.s                      0x00000000   Number         0  sys_stackheap_outer.o ABSOLUTE
     ../clib/angel/sys.s                      0x00000000   Number         0  indicate_semi.o ABSOLUTE
-    ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_command.o ABSOLUTE
+    ../clib/angel/sys.s                      0x00000000   Number         0  libspace.o ABSOLUTE
+    ../clib/angel/sys.s                      0x00000000   Number         0  use_no_semi.o ABSOLUTE
+    ../clib/angel/sys.s                      0x00000000   Number         0  sys_stackheap_outer.o ABSOLUTE
     ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_wrch.o ABSOLUTE
     ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_exit.o ABSOLUTE
+    ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_command.o ABSOLUTE
     ../clib/armsys.c                         0x00000000   Number         0  argv_veneer.o ABSOLUTE
-    ../clib/armsys.c                         0x00000000   Number         0  argv_veneer.o ABSOLUTE
-    ../clib/armsys.c                         0x00000000   Number         0  no_argv.o ABSOLUTE
     ../clib/armsys.c                         0x00000000   Number         0  _get_argv_nomalloc.o ABSOLUTE
+    ../clib/armsys.c                         0x00000000   Number         0  no_argv.o ABSOLUTE
+    ../clib/armsys.c                         0x00000000   Number         0  argv_veneer.o ABSOLUTE
     ../clib/heapalloc.c                      0x00000000   Number         0  hrguard.o ABSOLUTE
     ../clib/heapaux.c                        0x00000000   Number         0  heapauxi.o ABSOLUTE
-    ../clib/libinit.s                        0x00000000   Number         0  libinit2.o ABSOLUTE
-    ../clib/libinit.s                        0x00000000   Number         0  libshutdown.o ABSOLUTE
     ../clib/libinit.s                        0x00000000   Number         0  libinit.o ABSOLUTE
     ../clib/libinit.s                        0x00000000   Number         0  libshutdown2.o ABSOLUTE
+    ../clib/libinit.s                        0x00000000   Number         0  libinit2.o ABSOLUTE
+    ../clib/libinit.s                        0x00000000   Number         0  libshutdown.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_cppl_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_pvfn_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_stak_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  __raise.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_rtred_inner.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_general.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_abrt_inner.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_inner.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_exit.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_outer.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  __raise.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_formal.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_fpe_inner.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_rtred_inner.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_stak_inner.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_pvfn_inner.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_cppl_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_formal.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_outer.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_abrt_inner.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_segv_inner.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_other.o ABSOLUTE
     ../clib/signal.s                         0x00000000   Number         0  defsig.o ABSOLUTE
@@ -513,7 +513,7 @@ Memory Map of the image
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x08000000   0x08000000   0x00000188   Data   RO          181    RESET               startup_stm32l476xx.o
+    0x08000000   0x08000000   0x00000188   Data   RO          151    RESET               startup_stm32l476xx.o
     0x08000188   0x08000188   0x00000008   Code   RO          190  * !!!main             c_w.l(__main.o)
     0x08000190   0x08000190   0x00000034   Code   RO          347    !!!scatter          c_w.l(__scatter.o)
     0x080001c4   0x080001c4   0x0000001c   Code   RO          349    !!handler_zi        c_w.l(__scatter_zi.o)
@@ -559,7 +559,7 @@ Memory Map of the image
     0x08000200   0x08000200   0x00000004   Code   RO          270    .ARM.Collect$$rtexit$$00000003  c_w.l(rtexit2.o)
     0x08000204   0x08000204   0x00000006   Code   RO          271    .ARM.Collect$$rtexit$$00000004  c_w.l(rtexit2.o)
     0x0800020a   0x0800020a   0x00000002   PAD
-    0x0800020c   0x0800020c   0x00000084   Code   RO          182    .text               startup_stm32l476xx.o
+    0x0800020c   0x0800020c   0x00000084   Code   RO          152    .text               startup_stm32l476xx.o
     0x08000290   0x08000290   0x00000006   Code   RO          188    .text               c_w.l(heapauxi.o)
     0x08000296   0x08000296   0x0000004a   Code   RO          208    .text               c_w.l(sys_stackheap_outer.o)
     0x080002e0   0x080002e0   0x00000012   Code   RO          210    .text               c_w.l(exit.o)
@@ -571,9 +571,9 @@ Memory Map of the image
     0x0800030a   0x0800030a   0x00000002   PAD
     0x0800030c   0x0800030c   0x00000018   Code   RO            4    i.EXTI3_IRQHandler  buttoninterrupts.o
     0x08000324   0x08000324   0x00000018   Code   RO            5    i.EXTI9_5_IRQHandler  buttoninterrupts.o
-    0x0800033c   0x0800033c   0x00000028   Code   RO          125    i.decreaseThrottleTenPercent  throttle.o
-    0x08000364   0x08000364   0x0000002a   Code   RO          126    i.increaseThrottleTenPercent  throttle.o
-    0x0800038e   0x0800038e   0x00000004   Code   RO          155    i.main              main.o
+    0x0800033c   0x0800033c   0x00000028   Code   RO          159    i.decreaseThrottleTenPercent  throttle.o
+    0x08000364   0x08000364   0x0000002a   Code   RO          160    i.increaseThrottleTenPercent  throttle.o
+    0x0800038e   0x0800038e   0x00000004   Code   RO          125    i.main              main.o
     0x08000392   0x08000392   0x0000000a   Code   RO          277    x$fpl$fpinit        fz_wm.l(fpinit.o)
     0x0800039c   0x0800039c   0x00000010   Data   RO          345    Region$$Table       anon$$obj.o
 
@@ -583,8 +583,8 @@ Memory Map of the image
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x20000000        -       0x00000060   Zero   RW          219    .bss                c_w.l(libspace.o)
-    0x20000060        -       0x00000200   Zero   RW          180    HEAP                startup_stm32l476xx.o
-    0x20000260        -       0x00000400   Zero   RW          179    STACK               startup_stm32l476xx.o
+    0x20000060        -       0x00000200   Zero   RW          150    HEAP                startup_stm32l476xx.o
+    0x20000260        -       0x00000400   Zero   RW          149    STACK               startup_stm32l476xx.o
 
 
 ==============================================================================
@@ -594,13 +594,13 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-        48          8          0          0          0       2480   buttoninterrupts.o
-         4          0          0          0          0        447   main.o
-       132         42        392          0       1536        852   startup_stm32l476xx.o
-        82          0          0          0          0        978   throttle.o
+        48          8          0          0          0       2448   buttoninterrupts.o
+         4          0          0          0          0        431   main.o
+       132         42        392          0       1536        836   startup_stm32l476xx.o
+        82          0          0          0          0        946   throttle.o
 
     ----------------------------------------------------------------------
-       266         50        408          0       1536       4757   Object Totals
+       266         50        408          0       1536       4661   Object Totals
          0          0         16          0          0          0   (incl. Generated)
          0          0          0          0          0          0   (incl. Padding)
 
@@ -650,8 +650,8 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-       532         66        408          0       1632       5033   Grand Totals
-       532         66        408          0       1632       5033   ELF Image Totals
+       532         66        408          0       1632       4937   Grand Totals
+       532         66        408          0       1632       4937   ELF Image Totals
        532         66        408          0          0          0   ROM Totals
 
 ==============================================================================

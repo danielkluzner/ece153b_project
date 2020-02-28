@@ -135,7 +135,7 @@ void pwm_init(void) {
 	TIM2->CR1 &= ~TIM_CR1_DIR;
 	
 	//set compare value
-	TIM2->CCR1 = 1000;//==1ms (1000us)
+	TIM2->CCR1 = 2499;//==1ms (1000us)
 	
 	//enable counter
 	TIM2->CR1 |= TIM_CR1_CEN;
