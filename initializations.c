@@ -21,18 +21,55 @@
 
 #include "stm32l476xx.h"
 
-void clock_inits(void){
+void clock_inits(){
 	//port A clock in it
 	//port A used for onboard joystick, interrupts, and PWM pins
 	RCC->AHB2ENR |= RCC_AHB2ENR_GPIOAEN;
+	RCC->AHB2ENR |= RCC_AHB2ENR_GPIOEEN;
 	
 	//PWM clock
 	RCC->APB1ENR1 |= RCC_APB1ENR1_TIM2EN;
+	RCC->APB2ENR |= RCC_APB2ENR_TIM1EN;
 
 
 }
 
-void pwm_init(void) {
+void pwm_init() {
+	
+	// Configure PE8
+	GPIOE->MODER |= GPIO_MODER_MODE8_1;
+	GPIOE->MODER &= ~GPIO_MODER_MODE8_0;
+	
+	GPIOE->OSPEEDR |= GPIO_OSPEEDR_OSPEED8;
+	
+	GPIOE->PUPDR &= ~GPIO_PUPDR_PUPD8;
+	
+	GPIOE->AFR[1] &= ~GPIO_AFRH_AFSEL8;
+	GPIOE->AFR[1] |= GPIO_AFRH_AFSEL8_0;
+	
+	
+	// Configure PWM Output for TIM1 CH 1N
+	TIM1->CR1 &= ~TIM_CR1_DIR;
+	TIM1->PSC = 3;
+	TIM1->ARR = 1999;
+	
+	TIM1->CCMR1 &= ~TIM_CCMR1_OC1M;
+	TIM1->CCMR1 |= TIM_CCMR1_OC1M_1;
+	TIM1->CCMR1 |= TIM_CCMR1_OC1M_2;
+	TIM1->CCMR1 |= TIM_CCMR1_OC1PE;
+	
+	TIM1->CCER &= ~TIM_CCER_CC1NP;
+	
+	TIM1->CCER |= TIM_CCER_CC1NE;
+	
+	TIM1->BDTR |= TIM_BDTR_MOE;
+	
+	TIM1->CCR1 = 250;
+	
+	TIM1->CR1 |= TIM_CR1_CEN;
+
+	
+	
 		
 //	// Enable GPIO Port A Clock
 //	// enabled in clock_inits.c
@@ -82,7 +119,7 @@ void pwm_init(void) {
 	//default 4MHz clock
 	TIM2->CR1 &= ~TIM_CR1_DIR;
 	TIM2->PSC = 3; //frequency = 4MHz / (PSC + 1) = 1MHz
-	TIM2->ARR = 2499; //# steps before reload
+	TIM2->ARR = 19999; //# steps before reload -> 
 	
 	//set output compare mode to PWM mode 1 (0110)
 	//channel active while TIM2_CNT < TIM2_CCR1
@@ -135,13 +172,13 @@ void pwm_init(void) {
 	TIM2->CR1 &= ~TIM_CR1_DIR;
 	
 	//set compare value
-	TIM2->CCR1 = 2499;//==1ms (1000us)
+	TIM2->CCR1 = 10000;//==1ms (2000us)
 	
 	//enable counter
 	TIM2->CR1 |= TIM_CR1_CEN;
 }
 
-void joystick_init(void){
+void joystick_init(){
 	
 	//PA3 and 5 correspond to up and down, respectively
 	
@@ -169,7 +206,7 @@ void joystick_init(void){
 	
 }
 
-void interrupt_init(void){
+void interrupt_init(){
 	// Configure SYSCFG EXTI
 //	SYSCFG->EXTICR[0] &= ~SYSCFG_EXTICR1_EXTI0;
 //	SYSCFG->EXTICR[0] |= SYSCFG_EXTICR1_EXTI0_PA;

@@ -9,10 +9,10 @@
 
 int main() {
 	// Initialization
-	void clock_inits();
-	void joystick_init();
-	void interrupt_init();
-	void pwm_init();
+	clock_inits();
+	joystick_init();
+	interrupt_init();
+	pwm_init();
 	
 	while(1);
 	
