@@ -17,11 +17,11 @@
 //	Green_LED_Toggle();
 //}
 
-//void EXTI2_IRQHandler(void){
-//	EXTI->PR1 |= EXTI_PR1_PIF2;
-//	
-//	Red_LED_Toggle();
-//}
+void EXTI2_IRQHandler(void){
+	EXTI->PR1 |= EXTI_PR1_PIF2;
+	
+	midThrottle();
+}
 
 //PA3, up
 void EXTI3_IRQHandler(void){

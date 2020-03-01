@@ -7,5 +7,6 @@
 
 void increaseThrottleTenPercent(void);
 void decreaseThrottleTenPercent(void);
+void midThrottle(void);
 
 #endif
