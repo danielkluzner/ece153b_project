@@ -4,30 +4,38 @@
 
 void increaseThrottleTenPercent(void){
 
-	if ((TIM1->CCR1 + 10) >= 249){
-		TIM1->CCR1 = 249;
-	}else if(TIM1->CCR1 <125){
-		TIM1->CCR1 = 125;
+	if ((TIM2->CCR3 + 20) >= 249){
+		TIM2->CCR2 = 250;
+		TIM2->CCR3 = 250;
+		TIM1->CCR3 = 250;
+		TIM1->CCR4 = 250;
 	}else{
-	TIM1->CCR1 += 30;
+	TIM2->CCR2 += 20;
+	TIM2->CCR3 += 20;
+	TIM1->CCR3 += 20;
+	TIM1->CCR4 += 20;
 	}
-//	TIM1->CCR1 = 0;
+	//TIM2->CCR2 = 250;
+	//TIM2->CCR3 = 250;
+	//TIM1->CCR3 = 250;
+	//TIM1->CCR4 = 250;
 }
 void decreaseThrottleTenPercent(void){
 
-	if ((TIM1->CCR1 - 30) <= 100){
-		TIM1->CCR1 = 125;
-	}else if(TIM1->CCR1 <125){
-		TIM1->CCR1 = 125;
+	if ((TIM2->CCR3 - 20) <= 125){
+		TIM2->CCR2 = 125;
+		TIM2->CCR3 = 125;
+		TIM1->CCR3 = 125;
+		TIM1->CCR4 = 125;
 	}else{
-	TIM1->CCR1 -= 30;
+	TIM2->CCR2 -= 20;
+	TIM2->CCR3 -= 20;
+	TIM1->CCR3 -= 20;
+	TIM1->CCR4 -= 20;
 	}
-//	TIM1->CCR1 = 0;
-}
-
-void midThrottle(void){
-	
-	TIM1->CCR1 = 197;
-	
+	//TIM2->CCR2 = 125;
+	//TIM2->CCR3 = 125;
+	//TIM1->CCR3 = 125;
+	//TIM1->CCR4 = 125;
 }
 
