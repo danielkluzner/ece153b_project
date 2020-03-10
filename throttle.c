@@ -2,40 +2,42 @@
 
 #include "throttle.h"
 
-void increaseThrottleTenPercent(void){
+#define MAX_THROTTLE	170
+#define MIN_THROTTLE  125
+#define STEP_THROTTLE	2
 
-	if ((TIM2->CCR3 + 20) >= 249){
-		TIM2->CCR2 = 250;
-		TIM2->CCR3 = 250;
-		TIM1->CCR3 = 250;
-		TIM1->CCR4 = 250;
+void increaseThrottle(void){
+
+	if ((TIM2->CCR3 + 1) >= MAX_THROTTLE){
+		TIM2->CCR2 = MAX_THROTTLE;
+		TIM2->CCR3 = MAX_THROTTLE;
+		TIM1->CCR3 = MAX_THROTTLE;
+		TIM1->CCR4 = MAX_THROTTLE;
 	}else{
-	TIM2->CCR2 += 20;
-	TIM2->CCR3 += 20;
-	TIM1->CCR3 += 20;
-	TIM1->CCR4 += 20;
+	TIM2->CCR2 += STEP_THROTTLE;
+	TIM2->CCR3 += STEP_THROTTLE;
+	TIM1->CCR3 += STEP_THROTTLE;
+	TIM1->CCR4 += STEP_THROTTLE;
 	}
-	//TIM2->CCR2 = 250;
-	//TIM2->CCR3 = 250;
-	//TIM1->CCR3 = 250;
-	//TIM1->CCR4 = 250;
 }
-void decreaseThrottleTenPercent(void){
+void decreaseThrottle(void){
 
-	if ((TIM2->CCR3 - 20) <= 125){
-		TIM2->CCR2 = 125;
-		TIM2->CCR3 = 125;
-		TIM1->CCR3 = 125;
-		TIM1->CCR4 = 125;
+	if ((TIM2->CCR3 - 1) <= MIN_THROTTLE){
+		TIM2->CCR2 = MIN_THROTTLE;
+		TIM2->CCR3 = MIN_THROTTLE;
+		TIM1->CCR3 = MIN_THROTTLE;
+		TIM1->CCR4 = MIN_THROTTLE;
 	}else{
-	TIM2->CCR2 -= 20;
-	TIM2->CCR3 -= 20;
-	TIM1->CCR3 -= 20;
-	TIM1->CCR4 -= 20;
+	TIM2->CCR2 -= STEP_THROTTLE;
+	TIM2->CCR3 -= STEP_THROTTLE;
+	TIM1->CCR3 -= STEP_THROTTLE;
+	TIM1->CCR4 -= STEP_THROTTLE;
 	}
-	//TIM2->CCR2 = 125;
-	//TIM2->CCR3 = 125;
-	//TIM1->CCR3 = 125;
-	//TIM1->CCR4 = 125;
 }
 
+void killThrottle(void){
+	TIM2->CCR2 = MIN_THROTTLE;
+	TIM2->CCR3 = MIN_THROTTLE;
+	TIM1->CCR3 = MIN_THROTTLE;
+	TIM1->CCR4 = MIN_THROTTLE;
+}

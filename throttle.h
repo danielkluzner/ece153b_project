@@ -5,8 +5,8 @@
 
 #include "stm32l476xx.h"
 
-void increaseThrottleTenPercent(void);
-void decreaseThrottleTenPercent(void);
-void midThrottle(void);
+void increaseThrottle(void);
+void decreaseThrottle(void);
+void killThrottle(void);
 
 #endif

@@ -2,7 +2,7 @@
 
 
 
-
+#define START_THROTTLE 130
 
 
 
@@ -81,10 +81,10 @@ void pwm_init() {
 	
 	TIM1->BDTR |= TIM_BDTR_MOE;
 	
-	//TIM1->CCR1 = 125;
-	TIM1->CCR3 = 170;
-	TIM1->CCR4 = 170;
-	//TIM1->CCR4 = 125;
+	//TIM1->CCR1 = START_THROTTLE;
+	TIM1->CCR3 = START_THROTTLE;
+	TIM1->CCR4 = START_THROTTLE;
+	//TIM1->CCR4 = START_THROTTLE;
 	
 	TIM1->CR1 |= TIM_CR1_CEN;
 
@@ -176,16 +176,16 @@ void pwm_init() {
 	TIM2->EGR |= TIM_EGR_UG;
 	
 	//ensure set to edge Aligned mode (00)
-	TIM2->CR1 &= ~TIM_CR1_CMS;
+	TIM2->CR1 &= ~TIM_CR1_CMS; 
 	
 	//ensure set to upcounting
 	TIM2->CR1 &= ~TIM_CR1_DIR;
 	
 	//set compare value
-//	TIM2->CCR1 = 125;
-	TIM2->CCR2 = 170;
-	TIM2->CCR3 = 170;
-//	TIM2->CCR4 = 170;
+//	TIM2->CCR1 = START_THROTTLE;
+	TIM2->CCR2 = START_THROTTLE;
+	TIM2->CCR3 = START_THROTTLE;
+//	TIM2->CCR4 = START_THROTTLE;
 	
 	//enable counter
 	TIM2->CR1 |= TIM_CR1_CEN;
