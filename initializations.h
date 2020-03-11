@@ -9,6 +9,8 @@ void clock_inits(void);
 void pwm_init(void);
 void joystick_init(void);
 void interrupt_init(void);
+void i2c_init(void);
+
 
 #endif
 
