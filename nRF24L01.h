@@ -7,11 +7,11 @@
 #define nRF24L01_STATUS         0x04    // Status Register
 
 /* Multiple byte read/write command */ 
-#define MULTIPLEBYTE_CMD                        ((uint8_t)0x40)
+#define MULTIPLEBYTE_CMD        ((uint8_t)0x40)
 
-// PD7 = GYRO_CS (Deselect = Chip Select high)
-#define nRF24L01_CS_LOW   GPIOD->ODR &= ~(1U << 7);
-#define nRF24L01_CS_HIGH  GPIOD->ODR |=  (1U << 7);
+// PD7 = TRX_CS (Deselect = Chip Select high)
+#define nRF24L01_CSN_LOW   GPIOE->ODR &= ~(1U << 12);
+#define nRF24L01_CSN_HIGH  GPIOE->ODR |=  (1U << 12);
 
 void TRX_Init(void);
 void TRX_IO_CS_Init(void);
