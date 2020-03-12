@@ -9,30 +9,38 @@ void TRX_Init(void) {
 	SPI_Init();
 	
 	// Initialize Transceiver
-	TRX_IO_CS_Init();
+	TRX_IO_Init();
 	// nRF24L01_Init();
 }
 
 // Transceiver IO functions
-void TRX_IO_CS_Init(void) {
+void TRX_IO_Init(void) {
     
+    // E11 = CE
     // E12 = CS
     
-    // GPIO output mode for pin 12
+    // GPIO output mode for pins 11, 12
+		GPIOE->MODER &= ~GPIO_MODER_MODE11_1;
+    GPIOE->MODER |= GPIO_MODER_MODE11_0;
     GPIOE->MODER &= ~GPIO_MODER_MODE12_1;
     GPIOE->MODER |= GPIO_MODER_MODE12_0;
     
     // set output type as push-pull
+		GPIOE->OTYPER &= ~GPIO_OTYPER_OT11;
     GPIOE->OTYPER &= ~GPIO_OTYPER_OT12;
     
     // set output speed to very high
+		GPIOE->OSPEEDR |= GPIO_OSPEEDR_OSPEED11;
     GPIOE->OSPEEDR |= GPIO_OSPEEDR_OSPEED12;
     
     // set to no pull-up, pull-down
+		GPIOE->PUPDR &= ~GPIO_PUPDR_PUPD11;
     GPIOE->PUPDR &= ~GPIO_PUPDR_PUPD12;
     
-	// Deselect the Transceiver
-	nRF24L01_CSN_HIGH;
+    // Deselect the Transceiver
+    nRF24L01_CSN_HIGH;
+    // Enable the Transceiver
+    nRF24L01_CE_ON;
 }
 
 void TRX_IO_Write(uint8_t *pBuffer, uint8_t WriteAddr, uint8_t NumByteToWrite){
@@ -59,7 +67,7 @@ void TRX_IO_Write(uint8_t *pBuffer, uint8_t WriteAddr, uint8_t NumByteToWrite){
   
 	// Set chip select High at the end of the transmission  
 	SPI_Delay(10);
-	nRF24L01_CSN_HIGH; // TRX CS high
+	nRF24L01_CSN_HIGH; // TRX CSN high
 }
 
 void TRX_IO_Read(uint8_t *pBuffer, uint8_t ReadAddr, uint8_t NumByteToRead){
@@ -80,7 +88,7 @@ void TRX_IO_Read(uint8_t *pBuffer, uint8_t ReadAddr, uint8_t NumByteToRead){
   
 	// Set chip select High at the end of the transmission  
 	SPI_Delay(10);
-	nRF24L01_CSN_HIGH; // TRX CS high
+	nRF24L01_CSN_HIGH; // TRX CSN high
 }	
 
 
