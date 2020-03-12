@@ -5,11 +5,10 @@
 
 #include "stm32l476xx.h"
 
-void clock_inits(void);
+void clock_init(void);
 void pwm_init(void);
 void joystick_init(void);
 void interrupt_init(void);
-void i2c_init(void);
 
 
 #endif
