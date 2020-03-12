@@ -10,3 +10,8 @@
 .\objects\main.o: buttonInterrupts.h
 .\objects\main.o: throttle.h
 .\objects\main.o: initializations.h
+.\objects\main.o: I2C.h
+.\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\cstddef
+.\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\main.o: LCD.h
+.\objects\main.o: SysCLock.h

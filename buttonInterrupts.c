@@ -7,8 +7,7 @@
 //void EXTI0_IRQHandler(void){
 //	EXTI->PR1 |= EXTI_PR1_PIF0;
 //	
-//	Red_LED_Toggle();
-//	Green_LED_Toggle();
+//	killThrottle();
 //}
 
 //void EXTI1_IRQHandler(void){
@@ -27,13 +26,13 @@
 void EXTI3_IRQHandler(void){
 	EXTI->PR1 |= EXTI_PR1_PIF3;
 	
-	increaseThrottleTenPercent();
+	increaseThrottle();
 }
 
 //PA5, down
 void EXTI9_5_IRQHandler(void){
 	EXTI->PR1 |= EXTI_PR1_PIF5;
 	
-	decreaseThrottleTenPercent();
+	decreaseThrottle();
 }
 

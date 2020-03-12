@@ -93,12 +93,12 @@ void pwm_init()
 	GPIOA->MODER |= GPIO_MODER_MODE2_1;
 	GPIOA->MODER &= ~GPIO_MODER_MODE2_0;
 
-	//	GPIOA->MODER |= GPIO_MODER_MODE3_1;
-	//	GPIOA->MODER &= ~GPIO_MODER_MODE3_0;
+	// GPIOA->MODER |= GPIO_MODER_MODE3_1;
+	// GPIOA->MODER &= ~GPIO_MODER_MODE3_0;
 
 	//ospeed to very high (11)
 
-	//	GPIOA->OSPEEDR |= GPIO_OSPEEDR_OSPEED0;
+	// GPIOA->OSPEEDR |= GPIO_OSPEEDR_OSPEED0;
 	GPIOA->OSPEEDR |= GPIO_OSPEEDR_OSPEED1;
 	GPIOA->OSPEEDR |= GPIO_OSPEEDR_OSPEED2;
 	//	GPIOA->OSPEEDR |= GPIO_OSPEEDR_OSPEED3;
@@ -128,7 +128,7 @@ void pwm_init()
 	//set output compare mode to PWM mode 1 (0110)
 	//channel active while TIM2_CNT < TIM2_CCR1
 	//channel 1
-	//	TIM2->CCMR1 &= ~TIM_CCMR1_OC1M;
+	// TIM2->CCMR1 &= ~TIM_CCMR1_OC1M;
 	//	TIM2->CCMR1 |= TIM_CCMR1_OC1M_1;
 	//	TIM2->CCMR1 |= TIM_CCMR1_OC1M_2;
 	//channel 2
@@ -191,14 +191,14 @@ void joystick_init()
 	//PA3 and 5 correspond to up and down, respectively
 
 	// Initialize Joystick
-	//	GPIOA->MODER &= ~GPIO_MODER_MODE0;
+//	GPIOA->MODER &= ~GPIO_MODER_MODE0;
 	//	GPIOA->MODER &= ~GPIO_MODER_MODE1;
 	//	GPIOA->MODER &= ~GPIO_MODER_MODE2;
 	GPIOA->MODER &= ~GPIO_MODER_MODE3;
 	GPIOA->MODER &= ~GPIO_MODER_MODE5;
 
-	//  GPIOA->PUPDR |= GPIO_PUPDR_PUPD0_1;
-	//	GPIOA->PUPDR &= ~GPIO_PUPDR_PUPD0_0;
+//	GPIOA->PUPDR |= GPIO_PUPDR_PUPD0_1;
+//	GPIOA->PUPDR &= ~GPIO_PUPDR_PUPD0_0;
 	//
 	//	GPIOA->PUPDR |= GPIO_PUPDR_PUPD1_1;
 	//	GPIOA->PUPDR &= ~GPIO_PUPDR_PUPD1_0;
@@ -216,8 +216,8 @@ void joystick_init()
 void interrupt_init()
 {
 	// Configure SYSCFG EXTI
-	//	SYSCFG->EXTICR[0] &= ~SYSCFG_EXTICR1_EXTI0;
-	//	SYSCFG->EXTICR[0] |= SYSCFG_EXTICR1_EXTI0_PA;
+//	SYSCFG->EXTICR[0] &= ~SYSCFG_EXTICR1_EXTI0;
+//	SYSCFG->EXTICR[0] |= SYSCFG_EXTICR1_EXTI0_PA;
 	//
 	//	SYSCFG->EXTICR[0] &= ~SYSCFG_EXTICR1_EXTI1;
 	//	SYSCFG->EXTICR[0] |= SYSCFG_EXTICR1_EXTI1_PA;
@@ -232,22 +232,22 @@ void interrupt_init()
 	SYSCFG->EXTICR[0] |= SYSCFG_EXTICR2_EXTI5_PA;
 
 	// Configure EXTI Trigger
-	//	EXTI->FTSR1 |= EXTI_FTSR1_FT0;
+//	EXTI->FTSR1 |= EXTI_FTSR1_FT0;
 	//	EXTI->FTSR1 |= EXTI_FTSR1_FT1;
 	//	EXTI->FTSR1 |= EXTI_FTSR1_FT2;
 	EXTI->FTSR1 |= EXTI_FTSR1_FT3;
 	EXTI->FTSR1 |= EXTI_FTSR1_FT5;
 
 	// Enable EXTI
-	//	EXTI->IMR1 |= EXTI_IMR1_IM0;
+//	EXTI->IMR1 |= EXTI_IMR1_IM0;
 	//	EXTI->IMR1 |= EXTI_IMR1_IM1;
 	//	EXTI->IMR1 |= EXTI_IMR1_IM2;
 	EXTI->IMR1 |= EXTI_IMR1_IM3;
 	EXTI->IMR1 |= EXTI_IMR1_IM5;
 
 	// Configure and Enable in NVIC
-	//	NVIC_EnableIRQ(EXTI0_IRQn);
-	//	NVIC_SetPriority(EXTI0_IRQn, 0);
+//	NVIC_EnableIRQ(EXTI0_IRQn);
+//	NVIC_SetPriority(EXTI0_IRQn, 0);
 	//	NVIC_EnableIRQ(EXTI1_IRQn);
 	//	NVIC_SetPriority(EXTI1_IRQn, 0);
 	//	NVIC_EnableIRQ(EXTI2_IRQn);
@@ -256,4 +256,8 @@ void interrupt_init()
 	NVIC_SetPriority(EXTI3_IRQn, 0);
 	NVIC_EnableIRQ(EXTI9_5_IRQn);
 	NVIC_SetPriority(EXTI9_5_IRQn, 0);
+}
+
+void i2c_init()
+{
 }
