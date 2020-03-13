@@ -11,8 +11,8 @@
 int main()
 {
 	// Initialization
-	clock_inits();
-	//  System Clock = 80 MHz
+	clock_init();
+//	System Clock = 80 MHz
 	System_Clock_Init();
 	joystick_init();
 	interrupt_init();
@@ -40,18 +40,16 @@ int main()
 
 	while (1)
 	{
-//		I2C_ReceiveData(I2C1, SlaveAddress, Data_Receive, 2);
-//		voltageRegisterValue |= Data_Receive[0] << 8;
-//		voltageRegisterValue |= Data_Receive[1];
-//		
-//		voltage = voltageRegisterValue * 1.25 / 1000.0;
+		//		I2C_ReceiveData(I2C1, SlaveAddress, Data_Receive, 2);
+		//		voltageRegisterValue |= Data_Receive[0] << 8;
+		//		voltageRegisterValue |= Data_Receive[1];
+		//
+		//		voltage = voltageRegisterValue * 1.25 / 1000.0;
 
-//		sprintf(message, "%.2f", voltage);
-//		LCD_DisplayString((uint8_t *)message);
-//		voltage = 0.0;
-//		voltageRegisterValue = 0;
-
-
+		//		sprintf(message, "%.2f", voltage);
+		//		LCD_DisplayString((uint8_t *)message);
+		//		voltage = 0.0;
+		//		voltageRegisterValue = 0;
 	};
 
 	return 0;

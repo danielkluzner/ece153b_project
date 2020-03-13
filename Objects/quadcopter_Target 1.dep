@@ -12,7 +12,7 @@ I (C:\Users\Chris Laptop\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Incl
 I (C:\Users\Chris Laptop\AppData\Local\Arm\Packs\Keil\STM32L4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32L4xx\Include\system_stm32l4xx.h)(0x5DEEED04)
 I (throttle.h)(0x5E62BFB0)
 F (.\buttonInterrupts.h)(0x5E6967A6)()
-F (.\initializations.c)(0x5E6A8C4B)(--c99 --gnu -c --cpu Cortex-M4.fp.sp -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_Target_1-I"C:\Users\Chris Laptop\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include"-I"C:\Users\Chris Laptop\AppData\Local\Arm\Packs\Keil\STM32L4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32L4xx\Include"-D__UVISION_VERSION="529" -D_RTE_ -DSTM32L476xx-o .\objects\initializations.o --omf_browse .\objects\initializations.crf --depend .\objects\initializations.d)
+F (.\initializations.c)(0x5E6B15B3)(--c99 --gnu -c --cpu Cortex-M4.fp.sp -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_Target_1-I"C:\Users\Chris Laptop\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include"-I"C:\Users\Chris Laptop\AppData\Local\Arm\Packs\Keil\STM32L4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32L4xx\Include"-D__UVISION_VERSION="529" -D_RTE_ -DSTM32L476xx-o .\objects\initializations.o --omf_browse .\objects\initializations.crf --depend .\objects\initializations.d)
 I (stm32l476xx.h)(0x5E586E5E)
 I (C:\Users\Chris Laptop\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\core_cm4.h)(0x5D2671B6)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5D9BB318)
@@ -21,8 +21,8 @@ I (C:\Users\Chris Laptop\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Incl
 I (C:\Users\Chris Laptop\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_armcc.h)(0x5D2671B6)
 I (C:\Users\Chris Laptop\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\mpu_armv7.h)(0x5C902ED4)
 I (C:\Users\Chris Laptop\AppData\Local\Arm\Packs\Keil\STM32L4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32L4xx\Include\system_stm32l4xx.h)(0x5DEEED04)
-F (.\initializations.h)(0x5E69430D)()
-F (.\main.c)(0x5E6A8DA7)(--c99 --gnu -c --cpu Cortex-M4.fp.sp -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_Target_1-I"C:\Users\Chris Laptop\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include"-I"C:\Users\Chris Laptop\AppData\Local\Arm\Packs\Keil\STM32L4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32L4xx\Include"-D__UVISION_VERSION="529" -D_RTE_ -DSTM32L476xx-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (.\initializations.h)(0x5E6AC5B8)()
+F (.\main.c)(0x5E6B15CC)(--c99 --gnu -c --cpu Cortex-M4.fp.sp -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_Target_1-I"C:\Users\Chris Laptop\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include"-I"C:\Users\Chris Laptop\AppData\Local\Arm\Packs\Keil\STM32L4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32L4xx\Include"-D__UVISION_VERSION="529" -D_RTE_ -DSTM32L476xx-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (stm32l476xx.h)(0x5E586E5E)
 I (C:\Users\Chris Laptop\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\core_cm4.h)(0x5D2671B6)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5D9BB318)
@@ -33,7 +33,7 @@ I (C:\Users\Chris Laptop\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Incl
 I (C:\Users\Chris Laptop\AppData\Local\Arm\Packs\Keil\STM32L4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32L4xx\Include\system_stm32l4xx.h)(0x5DEEED04)
 I (buttonInterrupts.h)(0x5E6967A6)
 I (throttle.h)(0x5E62BFB0)
-I (initializations.h)(0x5E69430D)
+I (initializations.h)(0x5E6AC5B8)
 I (I2C.h)(0x5E1928FA)
 I (C:\Keil_v5\ARM\ARMCC\include\cstddef)(0x5D9BB312)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5D9BB318)
@@ -41,7 +41,7 @@ I (LCD.h)(0x5E1928FC)
 I (SysCLock.h)(0x5E1928FC)
 F (.\startup_stm32l476xx.s)(0x5E586E5E)(--cpu Cortex-M4.fp.sp --pd "__EVAL SETA 1" -g --apcs=interwork -I.\RTE\_Target_1-I"C:\Users\Chris Laptop\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include"-I"C:\Users\Chris Laptop\AppData\Local\Arm\Packs\Keil\STM32L4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32L4xx\Include"--pd "__UVISION_VERSION SETA 529" --pd "_RTE_ SETA 1" --pd "STM32L476xx SETA 1"--list .\listings\startup_stm32l476xx.lst --xref -o .\objects\startup_stm32l476xx.o --depend .\objects\startup_stm32l476xx.d)
 F (.\stm32l476xx.h)(0x5E586E5E)()
-F (.\throttle.c)(0x5E62BFE6)(--c99 --gnu -c --cpu Cortex-M4.fp.sp -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_Target_1-I"C:\Users\Chris Laptop\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include"-I"C:\Users\Chris Laptop\AppData\Local\Arm\Packs\Keil\STM32L4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32L4xx\Include"-D__UVISION_VERSION="529" -D_RTE_ -DSTM32L476xx-o .\objects\throttle.o --omf_browse .\objects\throttle.crf --depend .\objects\throttle.d)
+F (.\throttle.c)(0x5E6B14E5)(--c99 --gnu -c --cpu Cortex-M4.fp.sp -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_Target_1-I"C:\Users\Chris Laptop\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include"-I"C:\Users\Chris Laptop\AppData\Local\Arm\Packs\Keil\STM32L4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32L4xx\Include"-D__UVISION_VERSION="529" -D_RTE_ -DSTM32L476xx-o .\objects\throttle.o --omf_browse .\objects\throttle.crf --depend .\objects\throttle.d)
 I (throttle.h)(0x5E62BFB0)
 I (stm32l476xx.h)(0x5E586E5E)
 I (C:\Users\Chris Laptop\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\core_cm4.h)(0x5D2671B6)
@@ -65,7 +65,7 @@ I (C:\Users\Chris Laptop\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Incl
 I (C:\Users\Chris Laptop\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\mpu_armv7.h)(0x5C902ED4)
 I (C:\Users\Chris Laptop\AppData\Local\Arm\Packs\Keil\STM32L4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32L4xx\Include\system_stm32l4xx.h)(0x5DEEED04)
 F (.\I2C.h)(0x5E1928FA)()
-F (.\LCD.c)(0x5E4E1C50)(--c99 --gnu -c --cpu Cortex-M4.fp.sp -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_Target_1-I"C:\Users\Chris Laptop\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include"-I"C:\Users\Chris Laptop\AppData\Local\Arm\Packs\Keil\STM32L4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32L4xx\Include"-D__UVISION_VERSION="529" -D_RTE_ -DSTM32L476xx-o .\objects\lcd.o --omf_browse .\objects\lcd.crf --depend .\objects\lcd.d)
+F (.\LCD.c)(0x5E6B1194)(--c99 --gnu -c --cpu Cortex-M4.fp.sp -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_Target_1-I"C:\Users\Chris Laptop\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include"-I"C:\Users\Chris Laptop\AppData\Local\Arm\Packs\Keil\STM32L4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32L4xx\Include"-D__UVISION_VERSION="529" -D_RTE_ -DSTM32L476xx-o .\objects\lcd.o --omf_browse .\objects\lcd.crf --depend .\objects\lcd.d)
 I (lcd.h)(0x5E1928FC)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5D9BB318)
 I (stm32l476xx.h)(0x5E586E5E)

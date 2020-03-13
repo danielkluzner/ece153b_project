@@ -2,9 +2,9 @@
 
 #include "throttle.h"
 
-#define MAX_THROTTLE	170
-#define MIN_THROTTLE  125
-#define STEP_THROTTLE	2
+#define MAX_THROTTLE	(170 * 5)
+#define MIN_THROTTLE  (125 * 5)
+#define STEP_THROTTLE	(2 * 5)
 
 void increaseThrottle(void){
 

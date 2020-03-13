@@ -1,6 +1,6 @@
 
 
-#define START_THROTTLE 130
+
 
 /*This will be used to initialize PortA pins 5, 1-3
   Port A pin x will be used to send PWM signals to Motor(x +1)
@@ -14,16 +14,20 @@
 
 #include "stm32l476xx.h"
 
+//microseconds * 5 = throttleCount
+//
+#define START_THROTTLE (130 * 5)
+
 void clock_init()
 {
 	//port A clock in it
 	//port A used for onboard joystick, interrupts, and PWM pins
 	RCC->AHB2ENR |= RCC_AHB2ENR_GPIOAEN;
-	RCC->AHB2ENR |= RCC_AHB2ENR_GPIOEEN;
+	// RCC->AHB2ENR |= RCC_AHB2ENR_GPIOEEN;
 
 	//PWM clock
-	RCC->APB1ENR1 |= RCC_APB1ENR1_TIM2EN;
-	RCC->APB2ENR |= RCC_APB2ENR_TIM1EN;
+	RCC->APB1ENR1 |= RCC_APB1ENR1_TIM2EN;//Timer 2 Clock
+	// RCC->APB2ENR |= RCC_APB2ENR_TIM1EN;
 }
 
 void pwm_init()
@@ -36,8 +40,8 @@ void pwm_init()
 
 
 	// Configure PA5,1,2,3 for alternate function mode (10)
-	GPIOA->MODER |= GPIO_MODER_MODE5_1;
-	GPIOA->MODER &= ~GPIO_MODER_MODE5_0;
+	// GPIOA->MODER |= GPIO_MODER_MODE5_1;
+	// GPIOA->MODER &= ~GPIO_MODER_MODE5_0;
 
 	GPIOA->MODER |= GPIO_MODER_MODE1_1;
 	GPIOA->MODER &= ~GPIO_MODER_MODE1_0;
@@ -45,37 +49,37 @@ void pwm_init()
 	GPIOA->MODER |= GPIO_MODER_MODE2_1;
 	GPIOA->MODER &= ~GPIO_MODER_MODE2_0;
 
-	GPIOA->MODER |= GPIO_MODER_MODE3_1;
-	GPIOA->MODER &= ~GPIO_MODER_MODE3_0;
+	// GPIOA->MODER |= GPIO_MODER_MODE3_1;
+	// GPIOA->MODER &= ~GPIO_MODER_MODE3_0;
 
 	//ospeed to very high (11)
 
-	GPIOA->OSPEEDR |= GPIO_OSPEEDR_OSPEED5;
+	// GPIOA->OSPEEDR |= GPIO_OSPEEDR_OSPEED5;
 	GPIOA->OSPEEDR |= GPIO_OSPEEDR_OSPEED1;
 	GPIOA->OSPEEDR |= GPIO_OSPEEDR_OSPEED2;
-	GPIOA->OSPEEDR |= GPIO_OSPEEDR_OSPEED3;
+	// GPIOA->OSPEEDR |= GPIO_OSPEEDR_OSPEED3;
 
 	//no pull up pull down
-	GPIOA->PUPDR &= ~GPIO_PUPDR_PUPD5;
+	// GPIOA->PUPDR &= ~GPIO_PUPDR_PUPD5;
 	GPIOA->PUPDR &= ~GPIO_PUPDR_PUPD1;
 	GPIOA->PUPDR &= ~GPIO_PUPDR_PUPD2;
-	GPIOA->PUPDR &= ~GPIO_PUPDR_PUPD3;
+	// GPIOA->PUPDR &= ~GPIO_PUPDR_PUPD3;
 
 	//select AF1 for TIM2
-	GPIOA->AFR[0] &= ~GPIO_AFRL_AFSEL5;
-	GPIOA->AFR[0] |= GPIO_AFRL_AFSEL5_0;
+	// GPIOA->AFR[0] &= ~GPIO_AFRL_AFSEL5;
+	// GPIOA->AFR[0] |= GPIO_AFRL_AFSEL5_0;
 	GPIOA->AFR[0] &= ~GPIO_AFRL_AFSEL1;
 	GPIOA->AFR[0] |= GPIO_AFRL_AFSEL1_0;
 	GPIOA->AFR[0] &= ~GPIO_AFRL_AFSEL2;
 	GPIOA->AFR[0] |= GPIO_AFRL_AFSEL2_0;
-	GPIOA->AFR[0] &= ~GPIO_AFRL_AFSEL3;
-	GPIOA->AFR[0] |= GPIO_AFRL_AFSEL3_0;
+	// GPIOA->AFR[0] &= ~GPIO_AFRL_AFSEL3;
+	// GPIOA->AFR[0] |= GPIO_AFRL_AFSEL3_0;
 
 	// Configure PWM Output for TIM1 CH 1
 	//default: 4MHz clock
 	TIM2->CR1 &= ~TIM_CR1_DIR;
-	TIM2->PSC = 3;	//frequency = 4MHz / (PSC + 1) = 1MHz
-	TIM2->ARR = 1999; //# steps before reload ->
+	TIM2->PSC = 15;	//frequency = 80MH / (PSC + 1) = 5MHz
+	TIM2->ARR = 9999; //# steps before reload ->
 
 	//set output compare mode to PWM mode 1 (0110)
 	//channel active while TIM2_CNT < TIM2_CCR1
