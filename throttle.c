@@ -59,7 +59,7 @@ void Motor3_increase(void)
 	}
 }
 
-void Motor4_increase(oid)
+void Motor4_increase(void)
 {
 
 	if ((TIM2->CCR4 + STEP_THROTTLE) >= MAX_THROTTLE)

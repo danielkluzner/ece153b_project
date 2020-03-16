@@ -8,6 +8,9 @@
 #include "LCD.h"
 #include "SysCLock.h"
 #include "INA260.h"
+#include "SysTimer.h"
+#include "L3GD20.h"
+#include "angle.h"
 
 int main()
 {
@@ -23,6 +26,9 @@ int main()
 	LCD_Initialization();
 	LCD_Clear();
 	INA260_init();
+	GYRO_Init();
+	SysTick_Init();
+	
 
 	return 0;
 }

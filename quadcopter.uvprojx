@@ -369,7 +369,7 @@
             <TextAddressRange>0x08000000</TextAddressRange>
             <DataAddressRange>0x20000000</DataAddressRange>
             <pXoBase></pXoBase>
-            <ScatterFile></ScatterFile>
+            <ScatterFile>.\Objects\quadcopter.sct</ScatterFile>
             <IncludeLibs></IncludeLibs>
             <IncludeLibsPath></IncludeLibsPath>
             <Misc></Misc>
@@ -486,6 +486,26 @@
               <FileName>SPI.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\SPI.c</FilePath>
+            </File>
+            <File>
+              <FileName>L3GD20.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\L3GD20.c</FilePath>
+            </File>
+            <File>
+              <FileName>L3GD20.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\L3GD20.h</FilePath>
+            </File>
+            <File>
+              <FileName>angle.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\angle.c</FilePath>
+            </File>
+            <File>
+              <FileName>angle.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\angle.h</FilePath>
             </File>
           </Files>
         </Group>

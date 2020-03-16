@@ -1,17 +1,15 @@
-
 #include "INA260.h"
 
 char message[2] = {0};
 uint8_t SlaveAddress = INA260_ADDRESS;
-uint8_t *voltageRegisterAddress;
-*voltageRegisterAddress = INA260_VOLTAGE_REGISTER_ADDRESS;
+uint8_t voltageRegisterAddress = INA260_VOLTAGE_REGISTER_ADDRESS;
 uint8_t Data_Receive[2] = {0};
 uint16_t voltageRegisterValue = 0;
 float voltage = 0.0;
 
 void INA260_init(void)
 {
-    I2C_SendData(I2C1, SlaveAddress, voltageRegisterAddress, 1);
+    I2C_SendData(I2C1, SlaveAddress, &voltageRegisterAddress, 1);
 }
 
 void INA260_read(void)

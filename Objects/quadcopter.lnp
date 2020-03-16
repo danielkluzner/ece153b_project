@@ -7,6 +7,11 @@
 ".\objects\i2c.o"
 ".\objects\lcd.o"
 ".\objects\sysclock.o"
+".\objects\ina260.o"
+".\objects\systimer.o"
+".\objects\spi.o"
+".\objects\l3gd20.o"
+".\objects\angle.o"
 --strict --scatter ".\Objects\quadcopter.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
