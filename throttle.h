@@ -5,9 +5,15 @@
 
 #include "stm32l476xx.h"
 
-#define MAX_THROTTLE (170 * 5)
-#define MIN_THROTTLE (125 * 5)
-#define STEP_THROTTLE (2 * 5)
+//throttle signal to motors is PWM
+//period = 2 milliseconds
+//OneShot125 protocol
+//min pulse is 125 us
+//max pulse is 250 us
+
+#define MAX_THROTTLE (170 * 5) //170 us
+#define MIN_THROTTLE (125 * 5) //125 us
+#define STEP_THROTTLE (1 * 5)  // 1 us
 
 void increaseThrottle(void);
 

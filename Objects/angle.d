@@ -10,4 +10,3 @@
 .\objects\angle.o: C:\Users\Chris\AppData\Local\Arm\Packs\Keil\STM32L4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32L4xx\Include\system_stm32l4xx.h
 .\objects\angle.o: L3GD20.h
 .\objects\angle.o: SPI.h
-.\objects\angle.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h

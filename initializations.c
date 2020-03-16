@@ -14,7 +14,7 @@
 
 //microseconds * 5 = throttleCount
 //
-#define START_THROTTLE (130 * 5)
+#define START_THROTTLE (130 * 5)//130 us
 
 void clock_init()
 {

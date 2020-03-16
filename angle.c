@@ -1,5 +1,4 @@
 #include "angle.h"
-#include <math.h>
 
 #define NEGATIVE 0x8000
 
@@ -76,20 +75,20 @@ float get_v_z(void)
     return v_z;
 }
 
-float calc_x(uint8_t milliseconds)
+float get_x_angle(uint8_t milliseconds)
 {
     x += ((v_x + get_v_x()) / 2) * (milliseconds / 1000);
     //angle = (angular velocity initial + angular velocity final ) / 2 * (time final - time initial) 
     return x;
 }
 
-float calc_y(uint8_t milliseconds)
+float get_y_angle(uint8_t milliseconds)
 {
     y += ((v_y + get_v_y()) / 2) * (milliseconds / 1000);
     return y;
 }
 
-float calc_z(uint8_t milliseconds)
+float get_z_angle(uint8_t milliseconds)
 {
     z += ((v_z + get_v_z()) / 2) * (milliseconds / 1000);
     return z;

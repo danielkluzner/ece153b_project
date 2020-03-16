@@ -28,7 +28,6 @@ int main()
 	INA260_init();
 	GYRO_Init();
 	SysTick_Init();
-	
 
 	return 0;
 }

@@ -43,11 +43,13 @@ void SysTick_Init(void)
 // SysTick Interrupt Handler
 //******************************************************************************************
 void SysTick_Handler(void)
-{
+{//interrupt every 1 ms (1000 us) as per SysTick_LOAD value
 	msTicks++;
 	if (++updateTicks == 25)
 	{ //gyro has updated 19 times in 25 ms
-		//stabilize();
+		//read_last_angle_and_throttle_received();
+		//update_current_angle();
+		//stabilize_at_received_angle_and_throttle();
 		updateTicks = 0;
 	}
 	INA260_read();
@@ -62,7 +64,8 @@ void delay(uint32_t T)
 
 	curTicks = msTicks;
 	while ((msTicks - curTicks) < T)
-		;
+	{
+	};
 
 	msTicks = 0;
 }

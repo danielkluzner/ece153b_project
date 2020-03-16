@@ -10,8 +10,8 @@ void Angle_init(void);
 float get_v_x(void);
 float get_v_y(void);
 float get_v_z(void);
-float calc_x(uint8_t milliseconds);
-float calc_y(uint8_t milliseconds);
-float calc_z(uint8_t milliseconds);
+float get_x_angle(uint8_t milliseconds);
+float get_y_angle(uint8_t milliseconds);
+float get_z_angle(uint8_t milliseconds);
 
 #endif
