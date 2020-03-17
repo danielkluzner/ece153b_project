@@ -39,8 +39,8 @@ void TRX_IO_Init(void) {
     
     // Deselect the Transceiver
     nRF24L01_CSN_HIGH;
-    // Enable the Transceiver
-    nRF24L01_CE_ON;
+		// Enable nRF24L01
+		nRF24L01_CE_ON;
 }
 
 void PAYLOAD_Write(uint8_t *pBuffer, uint8_t NumByteToWrite){
@@ -130,12 +130,22 @@ void nRF24L01_Init(void) {
 	// TODO
 	uint8_t tempBuffer;
 	
+	// change data rate to 1 Mbps
+	tempBuffer = 0x03; // 00000011
+	TRX_IO_Write(&tempBuffer, nRF24L01_RF_SETUP, 1);
+	// set frequency
+	tempBuffer = 0x02; // 00000010
+	TRX_IO_Write(&tempBuffer, nRF24L01_RF_CH, 1);
+	// set payload width of data pipe 0 to 1 byte
+	tempBuffer = 0x01; // 00000001
+	TRX_IO_Write(&tempBuffer, nRF24L01_RX_PW_P0, 1);
 	
 	
+
 	// RX mode (PRIM_RX = 1)
-	//tempBuffer = 0x0b; // 00001011
+	tempBuffer = 0x0b; // 00001011
 	// TX mode (PRIM_RX = 0)
-	tempBuffer = 0x0a; // 00001010
+	//tempBuffer = 0x0a; // 00001010
 	
-	TRX_IO_Write(&tempBuffer, nRF24L01_CONFIG, 1);	
+	TRX_IO_Write(&tempBuffer, nRF24L01_CONFIG, 1);
 }	
