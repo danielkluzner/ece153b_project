@@ -5,7 +5,7 @@
 
 #define nRF24L01_CONFIG         0x00    // Configuration
 #define nRF24L01_STATUS         0x07    // Status Register
-#define nRF24L01_EN_RXADDR			0X02		// Enabled RX Addresses
+#define nRF24L01_EN_RXADDR			0x02		// Enabled RX Addresses
 
 /* Multiple byte read/write command */ 
 #define MULTIPLEBYTE_CMD        ((uint8_t)0x40)
