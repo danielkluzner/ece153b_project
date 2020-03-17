@@ -25,8 +25,8 @@
 
 void TRX_Init(void);
 void TRX_IO_Init(void);
-void PAYLOAD_Write(uint8_t *pBuffer, uint8_t NumByteToWrite);
-void PAYLOAD_Read(uint8_t *pBuffer, uint8_t NumByteToRead);
+void sendData(uint8_t *pBuffer, uint8_t NumByteToWrite);
+void receiveData(uint8_t *pBuffer, uint8_t NumByteToRead);
 void TRX_IO_Write(uint8_t *pBuffer, uint8_t WriteAddr, uint8_t NumByteToWrite);
 void TRX_IO_Read(uint8_t *pBuffer, uint8_t ReadAddr, uint8_t NumByteToRead);
 void nRF24L01_Init(void);
