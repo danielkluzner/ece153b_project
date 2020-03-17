@@ -43,7 +43,7 @@ void TRX_IO_Init(void) {
 		nRF24L01_CE_ON;
 }
 
-void PAYLOAD_Write(uint8_t *pBuffer, uint8_t NumByteToWrite){
+void sendData(uint8_t *pBuffer, uint8_t NumByteToWrite){
 	uint8_t rxBuffer[32];
 	
 	uint8_t AddrByte = 0xa0;  // set write mode
@@ -63,7 +63,7 @@ void PAYLOAD_Write(uint8_t *pBuffer, uint8_t NumByteToWrite){
 	nRF24L01_CSN_HIGH; // TRX CSN high
 }
 
-void PAYLOAD_Read(uint8_t *pBuffer, uint8_t NumByteToRead){
+void receiveData(uint8_t *pBuffer, uint8_t NumByteToRead){
 	uint8_t rxBuffer[32];
 	
 	uint8_t AddrByte = 0x61;  // set read mode
