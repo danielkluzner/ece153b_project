@@ -33,6 +33,7 @@ int main()
 	GYRO_Init();
 	TRX_RX_Init();
 
+	uint32_t noToSend = 0;
 	uint8_t pBuffer[4] = {0};
 	uint8_t NumByteToRead = 4;
 	uint32_t integerReceived = 0;
@@ -56,6 +57,14 @@ int main()
 
 		// //delay 1s
 		// delay(1000);
+
+		//send a number
+		*pBuffer = 16;
+		sendData(pBuffer, NumByteToRead);
+		*pBuffer++;
+
+		//delay 1s
+		delay(1000);
 	};
 
 	return 0;
