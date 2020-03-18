@@ -52,7 +52,8 @@ void SysTick_Handler(void)
 		//stabilize_at_received_angle_and_throttle();
 		updateTicks = 0;
 	}
-	INA260_read();
+//	INA260_read();
+	
 }
 
 //******************************************************************************************
