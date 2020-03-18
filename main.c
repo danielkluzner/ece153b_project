@@ -28,8 +28,7 @@ int main()
 	PWM_Init();
 
 	LCD_Initialization();
-	LCD_Clear();
-	VoltSensor_Init();
+	//	VoltSensor_Init();
 	GYRO_Init();
 	TRX_RX_Init();
 
@@ -37,34 +36,11 @@ int main()
 	uint8_t pBuffer[4] = {0};
 	uint8_t NumByteToRead = 4;
 	uint32_t integerReceived = 0;
-	char number[4];
+	char number[4] = {"h"};
 
 	while (1)
 	{
-
-		// //read data recieved
-		// readRecievedData(pBuffer, NumByteToRead);
-		// integerReceived = 0;
-		// integerReceived |= pBuffer[3] << 24;
-		// integerReceived |= pBuffer[2] << 16;
-		// integerReceived |= pBuffer[1] << 8;
-		// integerReceived |= pBuffer[0];
-
-		// sprintf(number, "%d", integerReceived);
-
-		// LCD_DisplayString((uint8_t *)number);
-		// //print data recieved
-
-		// //delay 1s
-		// delay(1000);
-
-		//send a number
-		*pBuffer = 16;
-		sendData(pBuffer, NumByteToRead);
-		*pBuffer++;
-
-		//delay 1s
-		delay(1000);
+		LCD_DisplayString(number);
 	};
 
 	return 0;

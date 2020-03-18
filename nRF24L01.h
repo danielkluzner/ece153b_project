@@ -13,26 +13,26 @@
 #define nRF24L01_R_SETUP_RETR 0x04
 #define nRF24L01_R_RF_CH 0x05    // RF Channel (frequency)
 #define nRF24L01_R_RF_SETUP 0x06 // RF Setup Register
-#define nRF24L01_R_RF_STATUS 0x07
-#define nRF24L01_R_RF_OBSERVE_TX 0x08
-#define nRF24L01_R_RF_RPD 0x09
-#define nRF24L01_R_RX_ADDR_P0 0x0a // Data Pipe 0 receive address
-#define nRF24L01_R_RF_RX_ADDR_P1 0x0b
-#define nRF24L01_R_RF_RX_ADDR_P2 0x0c
-#define nRF24L01_R_RF_RX_ADDR_P3 0x0d
-#define nRF24L01_R_RF_RX_ADDR_P4 0x0e
-#define nRF24L01_R_RF_RX_ADDR_P5 0x0f
+#define nRF24L01_R_STATUS 0x07
+#define nRF24L01_R_OBSERVE_TX 0x08
+#define nRF24L01_R_RPD 0x09
+#define nRF24L01_R_ADDR_P0 0x0a // Data Pipe 0 receive address
+#define nRF24L01_R_RX_ADDR_P1 0x0b
+#define nRF24L01_R_RX_ADDR_P2 0x0c
+#define nRF24L01_R_RX_ADDR_P3 0x0d
+#define nRF24L01_R_RX_ADDR_P4 0x0e
+#define nRF24L01_R_RX_ADDR_P5 0x0f
 #define nRF24L01_R_TX_ADDR 0x10  // Transmit address (TX Mode)
 #define nRF24L01_R_RX_PW_P0 0x11 // Data Pipe 0 RX Payload Width
-#define nRF24L01_R_RF_RX_PW_P1 0x12
-#define nRF24L01_R_RF_RX_PW_P2 0x13
-#define nRF24L01_R_RF_RX_PW_P3 0x14
-#define nRF24L01_R_RF_RX_PW_P4 0x15
-#define nRF24L01_R_RF_RX_PW_P5 0x16
-#define nRF24L01_R_RF_FIFO_STATUS 0x17
+#define nRF24L01_R_RX_PW_P1 0x12
+#define nRF24L01_R_RX_PW_P2 0x13
+#define nRF24L01_R_RX_PW_P3 0x14
+#define nRF24L01_R_RX_PW_P4 0x15
+#define nRF24L01_R_RX_PW_P5 0x16
+#define nRF24L01_R_FIFO_STATUS 0x17
 
-#define nRF24L01_R_RF_DYNDP 0x1c
-#define nRF24L01_R_RF_FEATURE 0x1d
+#define nRF24L01_R_DYNDP 0x1c
+#define nRF24L01_R_FEATURE 0x1d
 
 //write to rewgister command wordsl
 #define nRF24L01_W_CONFIG 0x00 | 0x20 // Configuration Register Address
@@ -42,26 +42,26 @@
 #define nRF24L01_W_SETUP_RETR 0x04 | 0x20
 #define nRF24L01_W_RF_CH 0x05 | 0x20    // RF Channel (frequency)
 #define nRF24L01_W_RF_SETUP 0x06 | 0x20 // RF Setup Register
-#define nRF24L01_W_RF_STATUS 0x07 | 0x20
-#define nRF24L01_W_RF_OBSERVE_TX 0x08 | 0x20
-#define nRF24L01_W_RF_RPD 0x09 | 0x20
+#define nRF24L01_W_STATUS 0x07 | 0x20
+#define nRF24L01_W_OBSERVE_TX 0x08 | 0x20
+#define nRF24L01_W_RPD 0x09 | 0x20
 #define nRF24L01_W_RX_ADDR_P0 0x0a | 0x20 // Data Pipe 0 receive address
-#define nRF24L01_W_RF_RX_ADDR_P1 0x0b | 0x20
-#define nRF24L01_W_RF_RX_ADDR_P2 0x0c | 0x20
-#define nRF24L01_W_RF_RX_ADDR_P3 0x0d | 0x20
-#define nRF24L01_W_RF_RX_ADDR_P4 0x0e | 0x20
-#define nRF24L01_W_RF_RX_ADDR_P5 0x0f | 0x20
+#define nRF24L01_W_RX_ADDR_P1 0x0b | 0x20
+#define nRF24L01_W_RX_ADDR_P2 0x0c | 0x20
+#define nRF24L01_W_RX_ADDR_P3 0x0d | 0x20
+#define nRF24L01_W_RX_ADDR_P4 0x0e | 0x20
+#define nRF24L01_W_RX_ADDR_P5 0x0f | 0x20
 #define nRF24L01_W_TX_ADDR 0x10 | 0x20  // Transmit address (TX Mode)
 #define nRF24L01_W_RX_PW_P0 0x11 | 0x20 // Data Pipe 0 RX Payload Width
-#define nRF24L01_W_RF_RX_PW_P1 0x12 | 0x20
-#define nRF24L01_W_RF_RX_PW_P2 0x13 | 0x20
-#define nRF24L01_W_RF_RX_PW_P3 0x14 | 0x20
-#define nRF24L01_W_RF_RX_PW_P4 0x15 | 0x20
-#define nRF24L01_W_RF_RX_PW_P5 0x16 | 0x20
-#define nRF24L01_W_RF_FIFO_STATUS 0x17 | 0x20
+#define nRF24L01_W_RX_PW_P1 0x12 | 0x20
+#define nRF24L01_W_RX_PW_P2 0x13 | 0x20
+#define nRF24L01_W_RX_PW_P3 0x14 | 0x20
+#define nRF24L01_W_RX_PW_P4 0x15 | 0x20
+#define nRF24L01_W_RX_PW_P5 0x16 | 0x20
+#define nRF24L01_W_FIFO_STATUS 0x17 | 0x20
 
-#define nRF24L01_W_RF_DYNDP 0x1c | 0x20
-#define nRF24L01_W_RF_FEATURE 0x1d | 0x20
+#define nRF24L01_W_DYNDP 0x1c | 0x20
+#define nRF24L01_W_FEATURE 0x1d | 0x20
 
 //read rx payload
 #define nRF24L01_R_RX_PAYLOAD 0b01100001

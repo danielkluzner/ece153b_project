@@ -163,7 +163,7 @@ void nRF24L01_TX_Init(void)
   uint8_t tempBuffer;
 
   // change data rate to 1 Mbps
-  tempBuffer = 0x03; // 00000011
+  tempBuffer = 0x00; // 00000000
   TRX_IO_Write(&tempBuffer, nRF24L01_W_RF_SETUP, 1);
 
   // set frequency
@@ -172,11 +172,11 @@ void nRF24L01_TX_Init(void)
 
   //enable dynamic payload length
   tempBuffer = 0x04; // 00000100
-  TRX_IO_Write(&tempBuffer, nRF24L01_W_RF_FEATURE, 1);
+  TRX_IO_Write(&tempBuffer, nRF24L01_W_FEATURE, 1);
 
   //set DPL_P0 bit for transmitting to RX with DPL enabled
   tempBuffer = 0x01;
-  TRX_IO_Write(&tempBuffer, nRF24L01_W_RF_DYNDP, 1);
+  TRX_IO_Write(&tempBuffer, nRF24L01_W_DYNDP, 1);
 
   // power up and RX mode (PRIM_RX = 1)
   // tempBuffer = 0x0b; // 00001011
@@ -194,8 +194,8 @@ void nRF24L01_RX_Init(void)
   uint8_t tempBuffer;
 
   // change data rate to 1 Mbps
-  tempBuffer = 0x03; // 00000011
-  TRX_IO_Write(&tempBuffer, nRF24L01_W_RF_SETUP, 1);
+  tempBuffer = 0x00; // 00000000
+  TRX_IO_Write(&tempBuffer, 0x26, 1);
 
   // set frequency
   tempBuffer = 0x02; // 00000010
@@ -203,11 +203,11 @@ void nRF24L01_RX_Init(void)
 
   //enable dynamic payload length
   tempBuffer = 0x04; // 00000100
-  TRX_IO_Write(&tempBuffer, nRF24L01_W_RF_FEATURE, 1);
+  TRX_IO_Write(&tempBuffer, nRF24L01_W_FEATURE, 1);
 
   //set entire DYNPD register (RX mode requirement)
   tempBuffer = 0x3f;
-  TRX_IO_Write(&tempBuffer, nRF24L01_W_RF_DYNDP, 1);
+  TRX_IO_Write(&tempBuffer, nRF24L01_W_DYNDP, 1);
 
   // power up and RX mode (PRIM_RX = 1)
   tempBuffer = 0x0b; // 00001011
