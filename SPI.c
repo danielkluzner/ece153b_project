@@ -62,8 +62,6 @@ void SPI1_GPIO_Init(void)
 
 void SPI2_GPIO_Init(void)
 {
-	// ENABLE CLOCK????????????????????
-
 	// GPIO AF mode for pins 1, 3, 4
 	GPIOD->MODER &= ~GPIO_MODER_MODE1;
 	GPIOD->MODER |= GPIO_MODER_MODE1_1;
@@ -99,75 +97,78 @@ void SPI2_GPIO_Init(void)
 	GPIOD->PUPDR &= ~GPIO_PUPDR_PUPD4;
 }
 
-void SP1I_Init(void){
+void SPI1_Init(void)
+{
 	// enable clock for SPI1
-  RCC->APB2ENR |= RCC_APB2ENR_SPI1EN;
-    
-  // reset SPI1
-  RCC->APB2RSTR |= RCC_APB2RSTR_SPI1RST;
-    
-    // Afterwards, clear the bits so that SPI1
-    // does not remain in a reset state
-    RCC->APB2RSTR &= ~RCC_APB2RSTR_SPI1RST;//have to wait?
-	
+	RCC->APB2ENR |= RCC_APB2ENR_SPI1EN;
+
+	// reset SPI1
+	RCC->APB2RSTR |= RCC_APB2RSTR_SPI1RST;
+
+	// Afterwards, clear the bits so that SPI1
+	// does not remain in a reset state
+	RCC->APB2RSTR &= ~RCC_APB2RSTR_SPI1RST;
+
 	//ensure SPI is disabled
 	//SPI control register 1
 	//SPE: SPI enable;
 	//0: disabled
 	//1: enabled
 	SPI1->CR1 &= ~SPI_CR1_SPE;
-	
+
 	//configure serial channel for full duplex comm.
 	//pg 1300
 	SPI1->CR1 &= ~SPI_CR1_RXONLY;
-		
+
 	//configure communication for 2-line unidirectional data mode
 	SPI1->CR1 &= ~SPI_CR1_BIDIMODE;
-	
+
 	//disable the output in bidirectional mode
 	SPI1->CR1 &= ~SPI_CR1_BIDIOE;
-	
+
 	//set frame format for receiving the MSB first
 	SPI1->CR1 &= ~SPI_CR1_LSBFIRST;
-	
+
 	//set data length to 8 bits
-	SPI1->CR2 |= SPI_CR2_DS;// 1111
-	SPI1->CR2 &= ~SPI_CR2_DS_3;//0111
-	
+	SPI1->CR2 |= SPI_CR2_DS;	// 1111
+	SPI1->CR2 &= ~SPI_CR2_DS_3; //0111
+
 	//set frame format to SPI Motorola mode
 	SPI1->CR2 &= ~SPI_CR2_FRF;
-	
+
 	//set clk polarity to 0 (0 when idle)
 	SPI1->CR1 &= ~SPI_CR1_CPOL;
-	
+
 	//set clock phase s.t. first clk
 	// transition is first data capture edge
 	SPI1->CR1 &= ~SPI_CR1_CPHA;
-	
+
 	//set baud prescaler to 16
-	SPI1->CR1 |= SPI_CR1_BR;//111
-	SPI1->CR1 &= ~SPI_CR1_BR_2;//011
-	
+	//80MHz->5MHz
+	SPI1->CR1 |= SPI_CR1_BR;	//111
+	SPI1->CR1 &= ~SPI_CR1_BR_2; //011
+
 	//disable CRC calculation
-	SPI1->CR2 &= ~SPI_CR1_CRCEN;
-	
+	SPI1->CR1 &= ~SPI_CR1_CRCEN;
+
 	//set board to operate in master mode
 	SPI1->CR1 |= SPI_CR1_MSTR;
-	
+
 	//enable software slave management
 	SPI1->CR1 |= SPI_CR1_SSM;
-	
+
 	//enable NSS pulse management
 	SPI1->CR2 |= SPI_CR2_NSSP;
-	
+
 	//set the internal slave select bit
-	SPI1->CR1 |= SPI_CR1_SSI;//1 = SET?
-	
+	SPI1->CR1 |= SPI_CR1_SSI;
+
 	//set the FIFO reception threshold to 1/4 (8 bit)
 	SPI1->CR2 |= SPI_CR2_FRXTH;
-	
+
 	//enable SPI
 	SPI1->CR1 |= SPI_CR1_SPE;
+}
 
 void SPI2_Init(void)
 {
@@ -179,7 +180,7 @@ void SPI2_Init(void)
 
 	// Afterwards, clear the bits so that SPI2
 	// does not remain in a reset state
-	RCC->APB1RSTR1 &= ~RCC_APB1RSTR1_SPI2RST; //have to wait?
+	RCC->APB1RSTR1 &= ~RCC_APB1RSTR1_SPI2RST;
 
 	//ensure SPI is disabled
 	//SPI control register 1
@@ -216,11 +217,12 @@ void SPI2_Init(void)
 	SPI2->CR1 &= ~SPI_CR1_CPHA;
 
 	//set baud prescaler to 16
+	//80MHz->5MHz
 	SPI2->CR1 |= SPI_CR1_BR;	//111
 	SPI2->CR1 &= ~SPI_CR1_BR_2; //011
 
 	//disable CRC calculation
-	SPI2->CR2 &= ~SPI_CR1_CRCEN;
+	SPI2->CR1 &= ~SPI_CR1_CRCEN;
 
 	//set board to operate in master mode
 	SPI2->CR1 |= SPI_CR1_MSTR;
@@ -232,7 +234,7 @@ void SPI2_Init(void)
 	SPI2->CR2 |= SPI_CR2_NSSP;
 
 	//set the internal slave select bit
-	SPI2->CR1 |= SPI_CR1_SSI; //1 = SET?
+	SPI2->CR1 |= SPI_CR1_SSI;
 
 	//set the FIFO reception threshold to 1/4 (8 bit)
 	SPI2->CR2 |= SPI_CR2_FRXTH;

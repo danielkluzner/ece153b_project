@@ -78,7 +78,7 @@ float get_v_z(void)
 float get_x_angle(uint8_t milliseconds)
 {
     x += ((v_x + get_v_x()) / 2) * (milliseconds / 1000);
-    //angle = (angular velocity initial + angular velocity final ) / 2 * (time final - time initial) 
+    //angle = (angular velocity initial + angular velocity final ) / 2 * (time final - time initial)
     return x;
 }
 

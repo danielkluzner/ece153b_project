@@ -5,8 +5,11 @@
 
 #include "stm32l476xx.h"
 
-void clock_init(void);
-void pwm_init(void);
+//microseconds * 5 = throttleCount
+//
+#define START_THROTTLE (130 * 5) //130 us
+
+void PWM_Init(void);
 void joystick_init(void);
 void interrupt_init(void);
 

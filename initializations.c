@@ -10,26 +10,19 @@
 	default clock frequency is 4Mhz
 */
 
-#include "stm32l476xx.h"
+#include "initializations.h"
 
-//microseconds * 5 = throttleCount
-//
-#define START_THROTTLE (130 * 5)//130 us
-
-void clock_init()
+void PWM_Init()
 {
+
 	//port A clock in it
 	//port A used for onboard joystick, interrupts, and PWM pins
 	RCC->AHB2ENR |= RCC_AHB2ENR_GPIOAEN;
 	// RCC->AHB2ENR |= RCC_AHB2ENR_GPIOEEN;
 
-	//PWM clock
+	//Timer 2 clock enable on peripheral bus (PWM clock)
 	RCC->APB1ENR1 |= RCC_APB1ENR1_TIM2EN; //Timer 2 Clock
-										  // RCC->APB2ENR |= RCC_APB2ENR_TIM1EN;
-}
 
-void pwm_init()
-{
 	//GPIO pin and Timer initialization
 	//Port A, Pin 5, 1, 2, 3 will correspond to
 	//motors 1, 2, 3, 4, respectively,
@@ -74,8 +67,8 @@ void pwm_init()
 	// Configure PWM Output for TIM1 CH 1
 	//default: 4MHz clock
 	TIM2->CR1 &= ~TIM_CR1_DIR;
-	TIM2->PSC = 15;   //frequency = 80MH / (PSC + 1) = 5MHz
-	TIM2->ARR = 9999; //# steps before reload ->
+	TIM2->PSC = 15;   //frequency = 80MH / (PSC + 1) = 5MHz -> 0.2us increment on counter
+	TIM2->ARR = 9999; //# steps before reload -> 10,000 * 0.2us = 2ms PWM signal period
 
 	//set output compare mode to PWM mode 1 (0110)
 	//channel active while TIM2_CNT < TIM2_CCR1

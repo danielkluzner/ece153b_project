@@ -7,9 +7,16 @@ uint8_t Data_Receive[2] = {0};
 uint16_t voltageRegisterValue = 0;
 float voltage = 0.0;
 
-void INA260_init(void)
+void VoltSensor_Init(void)
 {
-    I2C_SendData(I2C1, SlaveAddress, &voltageRegisterAddress, 1);
+    RCC->APB2ENR |= RCC_APB2ENR_SYSCFGEN;
+
+    // Initialize SPI
+    I2C_GPIO_Init();
+    I2C_Init();
+
+    //initialize voltage sensor
+    INA260_Init();
 }
 
 void INA260_read(void)
@@ -25,4 +32,10 @@ void INA260_read(void)
 
     sprintf(message, "%.2f", voltage);
     LCD_DisplayString((uint8_t *)message);
+}
+
+void INA260_Init(void)
+{
+
+    I2C_SendData(I2C1, SlaveAddress, &voltageRegisterAddress, 1);
 }

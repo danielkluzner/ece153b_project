@@ -430,9 +430,9 @@ static void LCD_Conv_Char_Seg(uint8_t *c, bool point, bool colon, uint8_t *digit
 		ch = C_NMAP;
 		break;
 
-//	case '�':
-//		ch = C_UMAP;
-//		break;
+		//	case '�':
+		//		ch = C_UMAP;
+		//		break;
 
 	case '-':
 		ch = C_MINUS;
@@ -446,9 +446,9 @@ static void LCD_Conv_Char_Seg(uint8_t *c, bool point, bool colon, uint8_t *digit
 		ch = C_SLATCH;
 		break;
 
-//	case '�':
-//		ch = C_PERCENT_1;
-//		break;
+		//	case '�':
+		//		ch = C_PERCENT_1;
+		//		break;
 
 	case '%':
 		ch = C_PERCENT_2;

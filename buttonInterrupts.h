@@ -2,7 +2,8 @@
 #ifndef BUTTONINTERRUPTS_H
 #define BUTTONINTERRUPTS_H
 
-#include "stm32l476xx.h"
+#include "buttonInterrupts.h"
+#include "throttle.h"
 
 //void EXTI_Init(void);
 //void EXTI0_IRQHandler(void);

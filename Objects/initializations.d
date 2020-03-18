@@ -1,4 +1,5 @@
 .\objects\initializations.o: initializations.c
+.\objects\initializations.o: initializations.h
 .\objects\initializations.o: stm32l476xx.h
 .\objects\initializations.o: C:\Users\Chris\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\core_cm4.h
 .\objects\initializations.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
