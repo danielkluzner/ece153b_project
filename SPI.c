@@ -100,6 +100,7 @@ void SPI2_GPIO_Init(void)
 void SPI1_Init(void)
 {
 	// enable clock for SPI1
+	RCC->AHB2ENR |= RCC_AHB2ENR_GPIOEEN;
 	RCC->APB2ENR |= RCC_APB2ENR_SPI1EN;
 
 	// reset SPI1
@@ -173,6 +174,7 @@ void SPI1_Init(void)
 void SPI2_Init(void)
 {
 	// enable clock for SPI2
+	RCC->AHB2ENR |= RCC_AHB2ENR_GPIOAEN;
 	RCC->APB1ENR1 |= RCC_APB1ENR1_SPI2EN;
 
 	// reset SPI2

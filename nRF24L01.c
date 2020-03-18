@@ -29,6 +29,7 @@ void TRX_RX_Init(void)
 // Transceiver IO functions
 void TRX_IO_Init(void)
 {
+	RCC->AHB2ENR |= RCC_AHB2ENR_GPIOEEN;
 
   // E11 = CE - chip enable
   // E12 = CSN - ~chip select
