@@ -41,21 +41,21 @@ int main()
 	while (1)
 	{
 
-		//read data recieved
-		readRecievedData(pBuffer, NumByteToRead);
-		integerReceived = 0;
-		integerReceived |= pBuffer[3] << 24;
-		integerReceived |= pBuffer[2] << 16;
-		integerReceived |= pBuffer[1] << 8;
-		integerReceived |= pBuffer[0];
+		// //read data recieved
+		// readRecievedData(pBuffer, NumByteToRead);
+		// integerReceived = 0;
+		// integerReceived |= pBuffer[3] << 24;
+		// integerReceived |= pBuffer[2] << 16;
+		// integerReceived |= pBuffer[1] << 8;
+		// integerReceived |= pBuffer[0];
 
-		sprintf(number, "%d", integerReceived);
+		// sprintf(number, "%d", integerReceived);
 
-		LCD_DisplayString((uint8_t *)number);
-		//print data recieved
+		// LCD_DisplayString((uint8_t *)number);
+		// //print data recieved
 
-		//delay 1s
-		delay(1000);
+		// //delay 1s
+		// delay(1000);
 	};
 
 	return 0;
