@@ -9,6 +9,7 @@
 #include "SPI.h"
 #include "LCD.h"
 #include <stdio.h>
+#include <string.h>
 
 
 int main() {
@@ -17,35 +18,33 @@ int main() {
 	SysTick_Init();
 	clock_inits();
 	joystick_init();
+	SPI_Interrupt_Init();
 	interrupt_init();
-	pwm_init();
+	//pwm_init();
 	LCD_Initialization();
 	TRX_Init();
 	
-	char RX_Data[8] = {"5"};
-	uint8_t read = 4;
-	uint8_t write = 2;
+	char RX_Data[32];
+	uint8_t read[32];
 	
-	PAYLOAD_Write(&write, 1);
+	//sendData(&write, 1);
 	
+	while(1);
 	while(1){
 		
 		// RECEIVER (CHRIS'S BOARD)
+		receiveData(read, 32);
+		sprintf(RX_Data, "%s", "-");
 		LCD_DisplayString((uint8_t*) RX_Data);
-		for(int i = 0; i < 10000000; i++);
-		sprintf(RX_Data, "%d", read);
+		delay(1000);
+		LCD_Clear();
+		*read = 0;
+		strcpy(RX_Data, "");
+		TRX_IO_Read(read, 0x07, 1);
+		sprintf(RX_Data, "%x", *read);
 		LCD_DisplayString((uint8_t*) RX_Data);
-		for(int i = 0; i < 10000000; i++);
-		PAYLOAD_Read(&read, 1);
-		sprintf(RX_Data, "%d", read);
-		LCD_DisplayString((uint8_t*) RX_Data);
-		for(int i = 0; i < 10000000; i++);
-		
-		
-		
-		// TRANSMITTER (DANIEL'S BOARD)
-
-		
+		delay(1000);
+		LCD_Clear();		
 	}
 	
 	return 0;
