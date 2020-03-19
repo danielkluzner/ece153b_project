@@ -8,9 +8,11 @@
 #define nRF24L01_SETUP_AW				0x03		// Setup of Address Widths
 #define nRF24L01_RF_CH					0x05		// RF Channel (frequency)
 #define nRF24L01_RF_SETUP				0x06		// RF Setup Register
+#define nRF24L01_STATUS					0x07		// Status Register
 #define nRF24L01_RX_ADDR_P0			0x0a		// Data Pipe 0 receive address
 #define nRF24L01_TX_ADDR				0x10		// Transmit address (TX Mode)
 #define nRF24L01_RX_PW_P0				0x11		// Data Pipe 0 RX Payload Width
+#define nRF24L01_RX_PW_P5				0x16		// Data Pipe 5 RX Payload Width
 
 /* Multiple byte read/write command */ 
 #define MULTIPLEBYTE_CMD        ((uint8_t)0x40)
