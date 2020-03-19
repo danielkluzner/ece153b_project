@@ -1,11 +1,4 @@
 
-
-
-
-
-
-
-
 /*This will be used to initialize PortA pins 0-3
   Port A pin x will be used to send PWM signals to Motor(x +1)
 	ex: pin 0 corresponds to motor (0 + 1) = motor 1
@@ -26,6 +19,7 @@ void clock_inits(){
 	//port A used for onboard joystick, interrupts, and PWM pins
 	RCC->AHB2ENR |= RCC_AHB2ENR_GPIOAEN;
 	RCC->AHB2ENR |= RCC_AHB2ENR_GPIOEEN;
+	RCC->AHB2ENR |= RCC_AHB2ENR_GPIOBEN;
 	
 	//PWM clock
 	RCC->APB1ENR1 |= RCC_APB1ENR1_TIM2EN;
@@ -219,6 +213,14 @@ void joystick_init(){
 	
 }
 
+void SPI_Interrupt_Init(void){
+	
+	GPIOB->MODER &= ~GPIO_MODER_MODE2;
+	GPIOB->PUPDR |= GPIO_PUPDR_PUPD2_1;
+	GPIOB->PUPDR &= ~GPIO_PUPDR_PUPD2_0;
+	
+}
+
 void interrupt_init(){
 	// Configure SYSCFG EXTI
 //	SYSCFG->EXTICR[0] &= ~SYSCFG_EXTICR1_EXTI0;
@@ -236,12 +238,16 @@ void interrupt_init(){
 	SYSCFG->EXTICR[0] &= ~SYSCFG_EXTICR2_EXTI5;
 	SYSCFG->EXTICR[0] |= SYSCFG_EXTICR2_EXTI5_PA;
 	
+	SYSCFG->EXTICR[0] &= ~SYSCFG_EXTICR1_EXTI2;
+	SYSCFG->EXTICR[0]|= SYSCFG_EXTICR1_EXTI2_PB;
+	
 	// Configure EXTI Trigger
 //	EXTI->FTSR1 |= EXTI_FTSR1_FT0;
 //	EXTI->FTSR1 |= EXTI_FTSR1_FT1;
 //	EXTI->FTSR1 |= EXTI_FTSR1_FT2;
 	EXTI->FTSR1 |= EXTI_FTSR1_FT3;
-	EXTI->FTSR1 |= EXTI_FTSR1_FT5;	
+	EXTI->FTSR1 |= EXTI_FTSR1_FT5;
+	EXTI->FTSR1 |= EXTI_FTSR1_FT2;	
 	
 	// Enable EXTI
 //	EXTI->IMR1 |= EXTI_IMR1_IM0;
@@ -249,6 +255,7 @@ void interrupt_init(){
 //	EXTI->IMR1 |= EXTI_IMR1_IM2;
 	EXTI->IMR1 |= EXTI_IMR1_IM3;
 	EXTI->IMR1 |= EXTI_IMR1_IM5;
+	EXTI->IMR1 |= EXTI_IMR1_IM2;
 	
 	
 	// Configure and Enable in NVIC
@@ -262,6 +269,10 @@ void interrupt_init(){
 	NVIC_SetPriority(EXTI3_IRQn, 0);
 	NVIC_EnableIRQ(EXTI9_5_IRQn);
 	NVIC_SetPriority(EXTI9_5_IRQn, 0);
+	NVIC_EnableIRQ(EXTI2_IRQn);
+	NVIC_SetPriority(EXTI2_IRQn, -1);
 }
+
+
 
 
