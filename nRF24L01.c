@@ -131,17 +131,26 @@ void nRF24L01_Init(void) {
 	uint8_t tempBuffer;
 	
 	// change data rate to 1 Mbps
-	tempBuffer = 0x03; // 00000011
+	tempBuffer = 0x06; // 00000110
 	TRX_IO_Write(&tempBuffer, nRF24L01_RF_SETUP, 1);
 	// set frequency
-	tempBuffer = 0x02; // 00000010
+	tempBuffer = 0x03; // 00000011
 	TRX_IO_Write(&tempBuffer, nRF24L01_RF_CH, 1);
-	// set payload width of data pipe 0 to 1 byte
-	tempBuffer = 0x01; // 00000001
+	
+	/*
+	tempBuffer = 0x3f; // 00111111
+	TRX_IO_Write(&tempBuffer, nRF24L01_EN_RXADDR, 1);
+	*/
+	
+	// set payload width of data pipe 5 to 32 byte
+	tempBuffer = 0x20; // 00100000
 	TRX_IO_Write(&tempBuffer, nRF24L01_RX_PW_P0, 1);
 	
+	/*
+	uint8_t ugh[5] = {0xe7, 0xe7, 0xe7, 0xe7, 0xe7};
+	TRX_IO_Write(ugh, 0x0b, 5);
+	*/
 	
-
 	// RX mode (PRIM_RX = 1)
 	tempBuffer = 0x0b; // 00001011
 	// TX mode (PRIM_RX = 0)
