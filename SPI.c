@@ -269,44 +269,6 @@ void SPI2_Init(void)
 	SPI2->CR1 |= SPI_CR1_SPE;
 }
 
-//void SPI1_IRQ_Init(void)
-//{
-//	// Configure SYSCFG EXTI
-//	SYSCFG->EXTICR[0] &= ~SYSCFG_EXTICR1_EXTI2;
-//	SYSCFG->EXTICR[0] |= SYSCFG_EXTICR1_EXTI2_PB;
-
-//	// Configure EXTI Trigger - Falling Edge
-//	EXTI->FTSR1 |= EXTI_FTSR1_FT2;
-
-//	// Enable EXTI
-//	EXTI->IMR1 |= EXTI_IMR1_IM2;
-
-//	// Configure and Enable in NVIC
-//	NVIC_EnableIRQ(EXTI2_IRQn);
-//	NVIC_SetPriority(EXTI2_IRQn, 0);
-//}
-
-//void EXTI2_IRQHandler(void)
-//{
-
-// char RX_Data[1];
-// uint8_t read;
-// //display status register
-// TRX_IO_Read(&read, nRF24L01_STATUS, 1);
-// sprintf(RX_Data, "%s", read);
-// LCD_Clear();
-// LCD_DisplayString(RX_Data);
-
-// uint8_t temp = 0x70;
-// TRX_IO_Write(&temp, nRF24L01_STATUS, 1);
-
-// EXTI->PR1 |= EXTI_PR1_PIF2;
-// //flush tx fifo
-// uint8_t rxBuffer[1];
-// temp = 0b11100010;
-// SPI_Write(SPI1, &temp, rxBuffer, 0);
-//}
-
 void SPI_Write(SPI_TypeDef *SPIx, uint8_t *txBuffer, uint8_t *rxBuffer, int size)
 {
 	volatile uint32_t tmpreg;
