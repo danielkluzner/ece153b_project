@@ -12,6 +12,8 @@
 ".\objects\spi.o"
 ".\objects\l3gd20.o"
 ".\objects\angle.o"
+".\objects\nrf24l01.o"
+".\objects\pwm_motor_signals.o"
 --strict --scatter ".\Objects\quadcopter.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

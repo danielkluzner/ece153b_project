@@ -11,8 +11,8 @@ void LCD_Clock_Init(void);
 void LCD_PIN_Init(void);
 void LCD_Configure(void);
 void LCD_Clear(void);
-void LCD_DisplayString(uint8_t* ptr);
-void LCD_WriteChar(uint8_t* ch, bool point, bool colon, uint8_t position);
-static void LCD_Conv_Char_Seg(uint8_t* c,bool point,bool colon, uint8_t* digit);
+void LCD_DisplayString(uint8_t *ptr);
+void LCD_WriteChar(uint8_t *ch, bool point, bool colon, uint8_t position);
+static void LCD_Conv_Char_Seg(uint8_t *c, bool point, bool colon, uint8_t *digit);
 
 #endif

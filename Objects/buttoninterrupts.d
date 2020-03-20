@@ -9,3 +9,11 @@
 .\objects\buttoninterrupts.o: C:\Users\Chris\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\mpu_armv7.h
 .\objects\buttoninterrupts.o: C:\Users\Chris\AppData\Local\Arm\Packs\Keil\STM32L4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32L4xx\Include\system_stm32l4xx.h
 .\objects\buttoninterrupts.o: throttle.h
+.\objects\buttoninterrupts.o: INA260.h
+.\objects\buttoninterrupts.o: I2C.h
+.\objects\buttoninterrupts.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\cstddef
+.\objects\buttoninterrupts.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\buttoninterrupts.o: LCD.h
+.\objects\buttoninterrupts.o: nRF24L01.h
+.\objects\buttoninterrupts.o: SPI.h
+.\objects\buttoninterrupts.o: SysTimer.h

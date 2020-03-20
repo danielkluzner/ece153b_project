@@ -2,19 +2,19 @@
 
 #define NEGATIVE 0x8000
 
-float v_x; // x velocity
-float v_y; // y velocity
-float v_z; // z velocity
-float x;   // x posotion
-float y;   // y position
-float z;   // z position
+float v_x;                   // x velocity
+float v_y;                   // y velocity
+float v_z;                   // z velocity
+extern volatile float x = 0; // x posotion
+extern volatile float y = 0; // y position
+extern volatile float z = 0; // z position
 
 void Angle_init(void)
 {
     v_x = 0; // x angular velocity - millidegrees per second
     v_y = 0; // y angular velocity
     v_z = 0; // z angular velocity
-    x = 0;   // x angle
+             // x = 0;   // x angle
     y = 0;   // y angle
     z = 0;   // z angle
 }
@@ -47,7 +47,7 @@ float get_v_y(void)
     gyro_y |= *data;
     if ((gyro_y & NEGATIVE) == NEGATIVE)
     {
-        v_y = (~gyro_y + 1) * (-70); //gyro data is ouput in units of 70mdps
+        v_y = (~gyro_y + 1) * (-70); //gyro data is output in units of 70mdps
     }
     else
     {
@@ -78,7 +78,7 @@ float get_v_z(void)
 float get_x_angle(uint8_t milliseconds)
 {
     x += ((v_x + get_v_x()) / 2) * (milliseconds / 1000);
-    //angle = (angular velocity initial + angular velocity final ) / 2 * (time final - time initial) 
+    //angle = (angular velocity initial + angular velocity final ) / 2 * (time final - time initial)
     return x;
 }
 

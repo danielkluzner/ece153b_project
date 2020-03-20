@@ -9,6 +9,8 @@ float voltage = 0.0;
 
 void INA260_init(void)
 {
+    I2C_GPIO_Init();
+    I2C_Init();
     I2C_SendData(I2C1, SlaveAddress, &voltageRegisterAddress, 1);
 }
 

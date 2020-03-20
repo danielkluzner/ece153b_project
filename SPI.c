@@ -1,5 +1,7 @@
 #include "SPI.h"
 #include "SysTimer.h"
+#include "nRF24L01.h"
+#include "LCD.h"
 
 // Note: When the data frame size is 8 bit, "SPIx->DR = byte_data;" works incorrectly.
 // It mistakenly send two bytes out because SPIx->DR has 16 bits. To solve the program,
@@ -15,15 +17,30 @@
 //   MEMS_MOSI = PD4 (SPI2_MOSI)   GYRO_INT1 = PD2
 //   MEMS_MISO = PD3 (SPI2_MISO)   GYRO_INT2 = PB8
 
-extern uint8_t Rx1_Counter;
-extern uint8_t Rx2_Counter;
-
 void SPI1_GPIO_Init(void)
 {
 
-	// E13 = SCK
-	// E14 = MISO
-	// E15 = MOSI
+	//XPB2 = SPI IRQ
+	//PE11 = CE - GPIO output
+	//PE12 = CSN - GPIO output
+	//PE13 = SCK - SPI
+	//PE14 = MISO - SPI
+	//PE15 = MOSI - SPI
+
+	//SPI port pins clock enable
+	RCC->AHB2ENR |= RCC_AHB2ENR_GPIOEEN;
+	RCC->AHB2ENR |= RCC_AHB2ENR_GPIOBEN;
+
+	//	//PB2 input mode for SPI IRQ
+	//	GPIOB->MODER &= ~GPIO_MODER_MODE2;
+	//	GPIOB->PUPDR |= GPIO_PUPDR_PUPD2_1;
+	//	GPIOB->PUPDR &= ~GPIO_PUPDR_PUPD2_0;
+
+	// GPIO output mode for pins 11, 12
+	GPIOE->MODER &= ~GPIO_MODER_MODE11_1;
+	GPIOE->MODER |= GPIO_MODER_MODE11_0;
+	GPIOE->MODER &= ~GPIO_MODER_MODE12_1;
+	GPIOE->MODER |= GPIO_MODER_MODE12_0;
 
 	// GPIO AF mode for pins E 13, 14, 15
 	GPIOE->MODER &= ~GPIO_MODER_MODE13;
@@ -45,16 +62,22 @@ void SPI1_GPIO_Init(void)
 	GPIOE->AFR[1] |= GPIO_AFRH_AFSEL15_2;
 
 	// set output type as push-pull
+	GPIOE->OTYPER &= ~GPIO_OTYPER_OT11;
+	GPIOE->OTYPER &= ~GPIO_OTYPER_OT12;
 	GPIOE->OTYPER &= ~GPIO_OTYPER_OT13;
 	GPIOE->OTYPER &= ~GPIO_OTYPER_OT14;
 	GPIOE->OTYPER &= ~GPIO_OTYPER_OT15;
 
 	// set output speed to very high
+	GPIOE->OSPEEDR |= GPIO_OSPEEDR_OSPEED11;
+	GPIOE->OSPEEDR |= GPIO_OSPEEDR_OSPEED12;
 	GPIOE->OSPEEDR |= GPIO_OSPEEDR_OSPEED13;
 	GPIOE->OSPEEDR |= GPIO_OSPEEDR_OSPEED14;
 	GPIOE->OSPEEDR |= GPIO_OSPEEDR_OSPEED15;
 
 	// set to no pull-up, pull-down
+	GPIOE->PUPDR &= ~GPIO_PUPDR_PUPD11;
+	GPIOE->PUPDR &= ~GPIO_PUPDR_PUPD12;
 	GPIOE->PUPDR &= ~GPIO_PUPDR_PUPD13;
 	GPIOE->PUPDR &= ~GPIO_PUPDR_PUPD14;
 	GPIOE->PUPDR &= ~GPIO_PUPDR_PUPD15;
@@ -62,7 +85,9 @@ void SPI1_GPIO_Init(void)
 
 void SPI2_GPIO_Init(void)
 {
-	// ENABLE CLOCK????????????????????
+
+	//SPI port pins clock enable
+	RCC->AHB2ENR |= RCC_AHB2ENR_GPIODEN;
 
 	// GPIO AF mode for pins 1, 3, 4
 	GPIOD->MODER &= ~GPIO_MODER_MODE1;
@@ -99,75 +124,77 @@ void SPI2_GPIO_Init(void)
 	GPIOD->PUPDR &= ~GPIO_PUPDR_PUPD4;
 }
 
-void SP1I_Init(void){
-	// enable clock for SPI1
-  RCC->APB2ENR |= RCC_APB2ENR_SPI1EN;
-    
-  // reset SPI1
-  RCC->APB2RSTR |= RCC_APB2RSTR_SPI1RST;
-    
-    // Afterwards, clear the bits so that SPI1
-    // does not remain in a reset state
-    RCC->APB2RSTR &= ~RCC_APB2RSTR_SPI1RST;//have to wait?
-	
+void SPI1_Init(void)
+{
+	// enable clock for SPI1 register write/read
+	RCC->APB2ENR |= RCC_APB2ENR_SPI1EN;
+
+	// reset SPI1
+	RCC->APB2RSTR |= RCC_APB2RSTR_SPI1RST;
+
+	// Afterwards, clear the bits so that SPI1
+	// does not remain in a reset state
+	RCC->APB2RSTR &= ~RCC_APB2RSTR_SPI1RST; //have to wait?
+
 	//ensure SPI is disabled
 	//SPI control register 1
 	//SPE: SPI enable;
 	//0: disabled
 	//1: enabled
 	SPI1->CR1 &= ~SPI_CR1_SPE;
-	
+
 	//configure serial channel for full duplex comm.
 	//pg 1300
 	SPI1->CR1 &= ~SPI_CR1_RXONLY;
-		
+
 	//configure communication for 2-line unidirectional data mode
 	SPI1->CR1 &= ~SPI_CR1_BIDIMODE;
-	
+
 	//disable the output in bidirectional mode
 	SPI1->CR1 &= ~SPI_CR1_BIDIOE;
-	
+
 	//set frame format for receiving the MSB first
 	SPI1->CR1 &= ~SPI_CR1_LSBFIRST;
-	
+
 	//set data length to 8 bits
-	SPI1->CR2 |= SPI_CR2_DS;// 1111
-	SPI1->CR2 &= ~SPI_CR2_DS_3;//0111
-	
+	SPI1->CR2 |= SPI_CR2_DS;	// 1111
+	SPI1->CR2 &= ~SPI_CR2_DS_3; //0111
+
 	//set frame format to SPI Motorola mode
 	SPI1->CR2 &= ~SPI_CR2_FRF;
-	
+
 	//set clk polarity to 0 (0 when idle)
 	SPI1->CR1 &= ~SPI_CR1_CPOL;
-	
+
 	//set clock phase s.t. first clk
 	// transition is first data capture edge
 	SPI1->CR1 &= ~SPI_CR1_CPHA;
-	
+
 	//set baud prescaler to 16
-	SPI1->CR1 |= SPI_CR1_BR;//111
-	SPI1->CR1 &= ~SPI_CR1_BR_2;//011
-	
+	SPI1->CR1 |= SPI_CR1_BR;	//111
+	SPI1->CR1 &= ~SPI_CR1_BR_2; //011
+
 	//disable CRC calculation
-	SPI1->CR2 &= ~SPI_CR1_CRCEN;
-	
+	SPI1->CR1 &= ~SPI_CR1_CRCEN;
+
 	//set board to operate in master mode
 	SPI1->CR1 |= SPI_CR1_MSTR;
-	
+
 	//enable software slave management
 	SPI1->CR1 |= SPI_CR1_SSM;
-	
+
 	//enable NSS pulse management
 	SPI1->CR2 |= SPI_CR2_NSSP;
-	
+
 	//set the internal slave select bit
-	SPI1->CR1 |= SPI_CR1_SSI;//1 = SET?
-	
+	SPI1->CR1 |= SPI_CR1_SSI; //1 = SET?
+
 	//set the FIFO reception threshold to 1/4 (8 bit)
 	SPI1->CR2 |= SPI_CR2_FRXTH;
-	
+
 	//enable SPI
 	SPI1->CR1 |= SPI_CR1_SPE;
+}
 
 void SPI2_Init(void)
 {
@@ -179,7 +206,7 @@ void SPI2_Init(void)
 
 	// Afterwards, clear the bits so that SPI2
 	// does not remain in a reset state
-	RCC->APB1RSTR1 &= ~RCC_APB1RSTR1_SPI2RST; //have to wait?
+	RCC->APB1RSTR1 &= ~RCC_APB1RSTR1_SPI2RST;
 
 	//ensure SPI is disabled
 	//SPI control register 1
@@ -216,11 +243,12 @@ void SPI2_Init(void)
 	SPI2->CR1 &= ~SPI_CR1_CPHA;
 
 	//set baud prescaler to 16
+	//80MHz->5MHz
 	SPI2->CR1 |= SPI_CR1_BR;	//111
 	SPI2->CR1 &= ~SPI_CR1_BR_2; //011
 
 	//disable CRC calculation
-	SPI2->CR2 &= ~SPI_CR1_CRCEN;
+	SPI2->CR1 &= ~SPI_CR1_CRCEN;
 
 	//set board to operate in master mode
 	SPI2->CR1 |= SPI_CR1_MSTR;
@@ -232,7 +260,7 @@ void SPI2_Init(void)
 	SPI2->CR2 |= SPI_CR2_NSSP;
 
 	//set the internal slave select bit
-	SPI2->CR1 |= SPI_CR1_SSI; //1 = SET?
+	SPI2->CR1 |= SPI_CR1_SSI;
 
 	//set the FIFO reception threshold to 1/4 (8 bit)
 	SPI2->CR2 |= SPI_CR2_FRXTH;
@@ -240,6 +268,44 @@ void SPI2_Init(void)
 	//enable SPI
 	SPI2->CR1 |= SPI_CR1_SPE;
 }
+
+//void SPI1_IRQ_Init(void)
+//{
+//	// Configure SYSCFG EXTI
+//	SYSCFG->EXTICR[0] &= ~SYSCFG_EXTICR1_EXTI2;
+//	SYSCFG->EXTICR[0] |= SYSCFG_EXTICR1_EXTI2_PB;
+
+//	// Configure EXTI Trigger - Falling Edge
+//	EXTI->FTSR1 |= EXTI_FTSR1_FT2;
+
+//	// Enable EXTI
+//	EXTI->IMR1 |= EXTI_IMR1_IM2;
+
+//	// Configure and Enable in NVIC
+//	NVIC_EnableIRQ(EXTI2_IRQn);
+//	NVIC_SetPriority(EXTI2_IRQn, 0);
+//}
+
+//void EXTI2_IRQHandler(void)
+//{
+
+// char RX_Data[1];
+// uint8_t read;
+// //display status register
+// TRX_IO_Read(&read, nRF24L01_STATUS, 1);
+// sprintf(RX_Data, "%s", read);
+// LCD_Clear();
+// LCD_DisplayString(RX_Data);
+
+// uint8_t temp = 0x70;
+// TRX_IO_Write(&temp, nRF24L01_STATUS, 1);
+
+// EXTI->PR1 |= EXTI_PR1_PIF2;
+// //flush tx fifo
+// uint8_t rxBuffer[1];
+// temp = 0b11100010;
+// SPI_Write(SPI1, &temp, rxBuffer, 0);
+//}
 
 void SPI_Write(SPI_TypeDef *SPIx, uint8_t *txBuffer, uint8_t *rxBuffer, int size)
 {

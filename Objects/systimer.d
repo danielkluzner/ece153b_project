@@ -13,3 +13,6 @@
 .\objects\systimer.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\cstddef
 .\objects\systimer.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\systimer.o: LCD.h
+.\objects\systimer.o: angle.h
+.\objects\systimer.o: L3GD20.h
+.\objects\systimer.o: SPI.h

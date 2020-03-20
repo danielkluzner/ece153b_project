@@ -1,5 +1,3 @@
-
-
 #ifndef THROTTLE_H
 #define THROTTLE_H
 
@@ -11,9 +9,10 @@
 //min pulse is 125 us
 //max pulse is 250 us
 
-#define MAX_THROTTLE (170 * 5) //170 us
-#define MIN_THROTTLE (125 * 5) //125 us
-#define STEP_THROTTLE (1 * 5)  // 1 us
+#define MAX_THROTTLE (170 * 5)   //170 us
+#define MIN_THROTTLE (125 * 5)   //125 us
+#define STEP_THROTTLE (1 * 5)    //  1 us
+#define START_THROTTLE (130 * 5) //130 us
 
 void increaseThrottle(void);
 

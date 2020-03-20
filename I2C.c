@@ -17,10 +17,7 @@ extern void Error_Handler(void);
 //===============================================================================
 void I2C_GPIO_Init(void)
 {
-	// TODO
-
-	// ENABLE CLOCK????????????????????
-	//-nah-
+	RCC->AHB2ENR |= RCC_AHB2ENR_GPIOBEN;
 
 	// GPIO AF mode for pins 6 and 7
 	GPIOB->MODER &= ~GPIO_MODER_MODE6;  //00
@@ -58,7 +55,7 @@ void I2C_GPIO_Init(void)
 //===============================================================================
 //                          I2C Initialization
 //===============================================================================
-void I2C_Initialization(void)
+void I2C_Init(void)
 {
 	uint32_t OwnAddr = 0x52;
 
@@ -121,10 +118,10 @@ void I2C_Initialization(void)
 	I2C1->TIMINGR = 0x0000;
 	I2C1->TIMINGR |= (7 << 28);  // PRESC = 7, clock = 10 MHz
 								 // t_PRESC =0.1 us
-	I2C1->TIMINGR |= (15 << 20); // SCLDEL = 20
-	I2C1->TIMINGR |= (15 << 16); // SDADEL = 1
-	I2C1->TIMINGR |= (45 << 8);  // SCLH = 10
-	I2C1->TIMINGR |= 55;		 // SCLL = 20
+	I2C1->TIMINGR |= (20 << 20); // SCLDEL = 20
+	I2C1->TIMINGR |= (1 << 16);  // SDADEL = 1
+	I2C1->TIMINGR |= (10 << 8);  // SCLH = 10
+	I2C1->TIMINGR |= 20;		 // SCLL = 20
 
 	// disable own address (Own Address 1)
 	I2C1->OAR1 &= ~I2C_OAR1_OA1EN;
