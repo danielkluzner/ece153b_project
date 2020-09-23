@@ -1,6 +1,6 @@
 # remote-controlloed-quadcopter
 
-ECE 153B | Winter 2020
+**Sensor and Peripheral Interface Design** ECE 153B | Winter 2020
 
 Team:
 - Daniel Kluzner
